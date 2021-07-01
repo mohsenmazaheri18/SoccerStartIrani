@@ -14,7 +14,7 @@ public class BallManager : MonoBehaviour {
 
 	//summary information
 	private bool canCheck;
-	private float threshold = 8.0f;
+	private float threshold = 5.0f;
 	private GameObject playerGate;
 	private GameObject opponentGate;
 	private float distanceToPlayerGate;			//ball's distance to player gate

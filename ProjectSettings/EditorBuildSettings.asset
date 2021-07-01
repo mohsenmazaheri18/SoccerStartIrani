@@ -6,29 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/FingerSoccerKit/C#-Assets/Scenes-C#/Menu-c#.unity
-    guid: 00000000000000000000000000000000
+    path: Assets/SampleScene/Home.unity
+    guid: 7bb1f0a2a8a7ca745a881644ad7b1beb
   - enabled: 1
-    path: Assets/FingerSoccerKit/C#-Assets/Scenes-C#/BuyCoinPack-c#.unity
-    guid: 00000000000000000000000000000000
+    path: Assets/SampleScene/MatchMaking.unity
+    guid: 08890068bb9d4e143b0104887f3b62d9
   - enabled: 1
-    path: Assets/FingerSoccerKit/C#-Assets/Scenes-C#/Config-c#.unity
-    guid: 00000000000000000000000000000000
+    path: Assets/SampleScene/Config.unity
+    guid: 0be66c77c07b876448784b9439941966
   - enabled: 1
-    path: Assets/FingerSoccerKit/C#-Assets/Scenes-C#/Game-c#.unity
-    guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/FingerSoccerKit/C#-Assets/Scenes-C#/Shop-c#.unity
-    guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/FingerSoccerKit/C#-Assets/Scenes-C#/ShopFormation-c#.unity
-    guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/FingerSoccerKit/C#-Assets/Scenes-C#/ShopTeam-c#.unity
-    guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/FingerSoccerKit/C#-Assets/Scenes-C#/Tournament-c#.unity
-    guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/FingerSoccerKit/C#-Assets/Scenes-C#/Penalty-c#.unity
-    guid: 00000000000000000000000000000000
+    path: Assets/SampleScene/Tournament.unity
+    guid: 9fed0ecd21edecd45b9d9fdfa68c6d92
+  m_configObjects: {}

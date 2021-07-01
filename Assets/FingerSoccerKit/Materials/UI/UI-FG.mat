@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: UI-FG
   m_Shader: {fileID: 30, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
@@ -19,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f0157cc2e096fd6438e8c3f9f5683137, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0101d8ffa4358374eb8e8c176ae1639e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []

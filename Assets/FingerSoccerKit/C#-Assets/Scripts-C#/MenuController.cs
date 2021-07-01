@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using FiroozehGameService.Core;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour {
 		
@@ -11,12 +13,22 @@ public class MenuController : MonoBehaviour {
 	///*************************************************************************///
 
 	private float buttonAnimationSpeed = 9;		//speed on animation effect when tapped on button
-	public static bool canTap = false;			//flag to prevent double tap
 	public AudioClip tapSfx;					//tap sound for buttons click
 
-	//Reference to GameObjects
-	public GameObject playerWins;				//UI 3d text object
-	public GameObject playerMoney;				//UI 3d text object
+	[Header("Canvas Text UI Gem Gold")]
+	public Text playerWins;				//UI text object
+	public Text playerMoney, playerCoin;			//UI text object
+
+	public GameObject Profile;
+	
+
+	[Header("Button GameMode")]
+	public Button GameMode_Single;
+	public Button GameMode_one_one, GameMode_Tournomet, GameMode_Penalty;
+
+	[Header("Button GameMode")]
+	 public Button Shop_Button;
+	 public Button Coin , Money , profile;
 
 	//*****************************************************************************
 	// Init. Updates the 3d texts with saved values fetched from playerprefs.
@@ -28,170 +40,83 @@ public class MenuController : MonoBehaviour {
 
 		Application.targetFrameRate = 60;
 		
-		playerWins.GetComponent<TextMesh>().text = "" + PlayerPrefs.GetInt("PlayerWins");
-		playerMoney.GetComponent<TextMesh>().text = "" + PlayerPrefs.GetInt("PlayerMoney");
+		playerWins.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerWins");
+		playerMoney.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerMoney");
+		playerCoin.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerCoin");
 	}
 
 
-	IEnumerator Start() {
-		canTap = false;
-		yield return new WaitForSeconds(1.0f);
-		canTap = true;
-	}
-
-	//*****************************************************************************
-	// FSM
-	//*****************************************************************************
-	void Update (){	
-		if(canTap) {
-			StartCoroutine(tapManager());
-		}
-	}
-
-	//*****************************************************************************
-	// This function monitors player touches on menu buttons.
-	// detects both touch and clicks and can be used with editor, handheld device and 
-	// every other platforms at once.
-	//*****************************************************************************
-	private RaycastHit hitInfo;
-	private Ray ray;
-	IEnumerator tapManager (){
-
-		//Mouse of touch?
-		if(	Input.touches.Length > 0 && Input.touches[0].phase == TouchPhase.Ended)  
-			ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
-		else if(Input.GetMouseButtonUp(0))
-			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		else
-			yield break;
-			
-		if (Physics.Raycast(ray, out hitInfo)) {
-			GameObject objectHit = hitInfo.transform.gameObject;
-			switch(objectHit.name) {
-			
-				//Game Modes
-				case "gameMode_1":								//player vs AI mode
-					playSfx(tapSfx);							//play touch sound
-					PlayerPrefs.SetInt("GameMode", 0);			//set game mode to fetch later in "Game" scene
-					PlayerPrefs.SetInt("IsTournament", 0);		//are we playing in a tournament?
-					PlayerPrefs.SetInt("IsPenalty", 0);			//are we playing penalty kicks?
-					StartCoroutine(animateButton(objectHit));	//touch animation effect
-					yield return new WaitForSeconds(1.0f);		//Wait for the animation to end
-					SceneManager.LoadScene("Config-c#");		//Load the next scene
-					break;
-
-				case "gameMode_2":								//two player (human) mode
-					playSfx(tapSfx);
-					PlayerPrefs.SetInt("GameMode", 1);
-					PlayerPrefs.SetInt("IsTournament", 0);
-					PlayerPrefs.SetInt("IsPenalty", 0);
-					StartCoroutine(animateButton(objectHit));
-					yield return new WaitForSeconds(1.0f);
-					SceneManager.LoadScene("Config-c#");
-					break;	
-
-				case "gameMode_3":
-					playSfx(tapSfx);
-					PlayerPrefs.SetInt("GameMode", 0);
-					PlayerPrefs.SetInt("IsTournament", 1);
-					PlayerPrefs.SetInt("IsPenalty", 0);
-					StartCoroutine(animateButton(objectHit));
-					yield return new WaitForSeconds(1.0f);
-
-					//if we load the tournament scene directly, player won't get the chance to select a team
-					//and has to play with the default team
-					//SceneManager.LoadScene("Tournament-c#");
-
-					//here we let the player to use to modified config scene to select a team
-					SceneManager.LoadScene("Config-c#");
-
-					break;	
-
-				case "gameMode_4":								//Penalty Kicks
-					playSfx(tapSfx);
-					PlayerPrefs.SetInt("GameMode", 0);
-					PlayerPrefs.SetInt("IsTournament", 0);
-					PlayerPrefs.SetInt("IsPenalty", 1);
-					StartCoroutine(animateButton(objectHit));
-					yield return new WaitForSeconds(1.0f);
-					SceneManager.LoadScene("Penalty-c#");
-					break;
-						
-				//Option buttons	
-				case "Btn-01":
-					playSfx(tapSfx);
-					StartCoroutine(animateButton(objectHit));
-					yield return new WaitForSeconds(1.0f);
-					SceneManager.LoadScene("Shop-c#");
-					break;
-
-				case "Btn-02":
-				case "Status_2":
-					playSfx(tapSfx);
-					StartCoroutine(animateButton(objectHit));
-					yield return new WaitForSeconds(1.0f);
-					SceneManager.LoadScene("BuyCoinPack-c#");
-					break;
-
-				case "Btn-03":
-					playSfx(tapSfx);
-					StartCoroutine(animateButton(objectHit));
-					yield return new WaitForSeconds(1.0f);
-					Application.Quit();
-					break;	
-
-				case "FreeCoinsButton":
-					playSfx(tapSfx);
-					StartCoroutine(animateButton(objectHit));
-					yield return new WaitForSeconds(1.0f);
-					break;
-			}	
-		}
-	}
-
-	//*****************************************************************************
-	// This function animates a button by modifying it's scales on x-y plane.
-	// can be used on any element to simulate the tap effect.
-	//*****************************************************************************
-	IEnumerator animateButton ( GameObject _btn  ){
-
-		canTap = false;
-		StartCoroutine (reactiveTap ());
-
-		Vector3 startingScale = _btn.transform.localScale;	//initial scale	
-		Vector3 destinationScale = startingScale * 1.1f;		//target scale
+	void Start()
+	{
+		//player vs AI mode
+		GameMode_Single.onClick.AddListener(() =>
+		{
+			Debug.Log("Single");
+			playSfx(tapSfx); //play touch sound
+			PlayerPrefs.SetInt("GameMode", 0); //set game mode to fetch later in "Game" scene
+			PlayerPrefs.SetInt("IsTournament", 0); //are we playing in a tournament?
+			PlayerPrefs.SetInt("IsPenalty", 0); //are we playing penalty kicks?
+			SceneManager.LoadScene("MatchMaking"); //Load the next scene
+		});
 		
-		//Scale up
-		float t = 0.0f; 
-		while (t <= 1.0f) {
-			t += Time.deltaTime * buttonAnimationSpeed;
-			_btn.transform.localScale = new Vector3( Mathf.SmoothStep(startingScale.x, destinationScale.x, t),
-			                                        Mathf.SmoothStep(startingScale.y, destinationScale.y, t),
-			                                        _btn.transform.localScale.z);
-			yield return 0;
-		}
+		//two player (human) mode
+		GameMode_one_one.onClick.AddListener(() =>
+		{
+			playSfx(tapSfx);
+			PlayerPrefs.SetInt("GameMode", 1);
+			PlayerPrefs.SetInt("IsTournament", 0);
+			PlayerPrefs.SetInt("IsPenalty", 0);
+			SceneManager.LoadScene("Config");
+		});
 		
-		//Scale down
-		float r = 0.0f; 
-		if(_btn.transform.localScale.x >= destinationScale.x) {
-			while (r <= 1.0f) {
-				r += Time.deltaTime * buttonAnimationSpeed;
-				_btn.transform.localScale = new Vector3( Mathf.SmoothStep(destinationScale.x, startingScale.x, r),
-				                                        Mathf.SmoothStep(destinationScale.y, startingScale.y, r),
-				                                        _btn.transform.localScale.z);
-				yield return 0;
-			}
-		}
+		//Tournomet Mode
+		GameMode_Tournomet.onClick.AddListener(() =>
+		{
+			playSfx(tapSfx);
+			PlayerPrefs.SetInt("GameMode", 0);
+			PlayerPrefs.SetInt("IsTournament", 1);
+			PlayerPrefs.SetInt("IsPenalty", 0);
+			SceneManager.LoadScene("Config");
+		});
 		
-		/*if(r >= 1)
-			canTap = true;*/
-	}
+		//Penalty Kicks
+/*		GameMode_Penalty.onClick.AddListener(() =>
+		{
+			playSfx(tapSfx);
+			PlayerPrefs.SetInt("GameMode", 0);
+			PlayerPrefs.SetInt("IsTournament", 0);
+			PlayerPrefs.SetInt("IsPenalty", 1);
+			SceneManager.LoadScene("Penalty-c#");
+		});
+		*/
+		//Button Option Shop
+		Shop_Button.onClick.AddListener(() =>
+		{
+			playSfx(tapSfx);
+			SceneManager.LoadScene("Shop");
+		});
+		
+		//Button Option Coin
+		Coin.onClick.AddListener(() =>
+		{
+			playSfx(tapSfx);
+			SceneManager.LoadScene("CoinShop");
+		});
+		
+		//Button Option Money
+		Money.onClick.AddListener(() =>
+		{
+			playSfx(tapSfx);
+			SceneManager.LoadScene("MoneyShop");
+		});
+		profile.onClick.AddListener(() =>
+		{
+			playSfx(tapSfx);
+			Profile.SetActive(true);
+		});
 
-	IEnumerator reactiveTap() {
-		yield return new WaitForSeconds (1.0f);
-		canTap = true;
 	}
-
+	
 	//*****************************************************************************
 	// Play sound clips
 	//*****************************************************************************
