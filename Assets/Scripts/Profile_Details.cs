@@ -10,10 +10,17 @@ using FiroozehGameService.Utils;
 
 public class Profile_Details : MonoBehaviour
 {
+    [Header("Text In Profile")]
     public Text nickname;
     public Text id_name;
 
+    [Header("button In Profile")]
     public Button back;
+    public Button buy_form, buy_Mohre;
+    
+    [Header("Canvas Manage")]
+    public Canvas profile;
+    public Canvas form, mohre;
     
     // Start is called before the first frame update
     async void Start()
@@ -26,6 +33,11 @@ public class Profile_Details : MonoBehaviour
        {
           this.gameObject.SetActive(false);
        });
+        buy_form.onClick.AddListener(()=>
+        {
+            profile.enabled = false;
+            form.enabled = true;
+        });
     }
 
     // Update is called once per frame

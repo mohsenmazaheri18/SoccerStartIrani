@@ -25,9 +25,7 @@ public class MenuController_Login : MonoBehaviour
     [Header("Button To Login")]
     public Button Google;
     public Button ID_Login, Guest;
-
-    [Header("Login Mode")]
-    public GameObject ID_Login_Mode;
+    
 
     [Header("Login Mode ID Text")]
     public Text Status;
@@ -45,8 +43,8 @@ public class MenuController_Login : MonoBehaviour
     public InputField Password;
 
     [Header("Canvas And Object To Start Game")]
-    public GameObject Menu;
     public Canvas Mode_Canvas;
+    public Canvas Id_Login_Canvas;
 
     private async void Start()
     {
@@ -65,7 +63,7 @@ public class MenuController_Login : MonoBehaviour
 
         ID_Login.onClick.AddListener(() =>
         {
-            ID_Login_Mode.SetActive(true);
+            Id_Login_Canvas.enabled = true;
             Mode_Canvas.enabled = false;
         });
 
@@ -73,8 +71,7 @@ public class MenuController_Login : MonoBehaviour
         {
             
             await GameService.LoginOrSignUp.LoginAsGuest();
-            Menu.SetActive(true);
-            Mode_Canvas.enabled = false;
+            SceneManager.LoadScene("Home");
         });
         
         SwitchToRegisterOrLogin.GetComponent<Button>().onClick.AddListener(() =>

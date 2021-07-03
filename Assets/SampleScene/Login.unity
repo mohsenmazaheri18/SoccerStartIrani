@@ -3430,7 +3430,6 @@ MonoBehaviour:
   Google: {fileID: 1029716427}
   ID_Login: {fileID: 458109695}
   Guest: {fileID: 749673587}
-  ID_Login_Mode: {fileID: 1333260238}
   Status: {fileID: 1600402665}
   LoginErr: {fileID: 771597075}
   Submit_Text: {fileID: 1620209882}
@@ -3439,8 +3438,8 @@ MonoBehaviour:
   NickName: {fileID: 671399296}
   Email: {fileID: 34849845}
   Password: {fileID: 1565145877}
-  Menu: {fileID: 0}
   Mode_Canvas: {fileID: 2049670082}
+  Id_Login_Canvas: {fileID: 1333260241}
 --- !u!114 &1839603267
 MonoBehaviour:
   m_ObjectHideFlags: 0

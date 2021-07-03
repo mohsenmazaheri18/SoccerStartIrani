@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using FiroozehGameService.Core;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShowNickName : MonoBehaviour
 {
     public Text NickName_SHOW;
     public Button Logout;
-    public Canvas Login;
     public GameObject Menu;
     
     // Start is called before the first frame update
@@ -19,8 +19,8 @@ public class ShowNickName : MonoBehaviour
        Logout.onClick.AddListener( () =>
        {
            FiroozehGameService.Core.GameService.Logout();
-           Login.enabled = true;
-            Menu.SetActive(false);
+           Menu.SetActive(false);
+           SceneManager.LoadScene("Login");
        });
 
     }
