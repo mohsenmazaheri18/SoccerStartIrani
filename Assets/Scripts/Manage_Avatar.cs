@@ -12,9 +12,6 @@ using FiroozehGameService.Utils.Serializer;
 using GProtocol.Utils.IO;
 using UnityEngine.Networking;
 using Utils;
-using FileUtil = UnityEditor.FileUtil;
-using UnityEditor.UI;
-using UnityEngine.Experimental.Rendering;
 
 
 public class Manage_Avatar : MonoBehaviour

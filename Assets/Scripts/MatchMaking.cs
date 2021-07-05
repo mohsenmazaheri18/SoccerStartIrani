@@ -19,16 +19,14 @@ public class MatchMaking : MonoBehaviour
     public GameObject player_role;
     public Image player1_avatar;
     public Image player2_avatar;
+    
     public Text playerMoney;
     public Text playerCoin;
-    
-    public Text Player1Coin_Set;
-    public Text Player2Coin_Set;
 
     public async void Cansel_AutoMatch()
     {
         await GameService.GSLive.TurnBased().CancelAutoMatch();
-        SceneManager.LoadScene("Home");
+        
     }
 
     // Start is called before the first frame update
