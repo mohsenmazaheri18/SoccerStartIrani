@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/SampleScene/Game-c#.unity
+- path: Assets/SampleScene/Login.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

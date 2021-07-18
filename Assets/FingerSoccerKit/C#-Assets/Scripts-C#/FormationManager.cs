@@ -76,6 +76,62 @@ public class FormationManager : MonoBehaviour {
 				if(_UnitIndex == 3) output = new Vector3(-5, 5.5f + yFixer, fixedZ);
 				if(_UnitIndex == 4) output = new Vector3(-1.5f, 5.5f + yFixer, fixedZ);
 				break;
+			case 5:
+				if(_UnitIndex == 0) output = new Vector3(-4, 7 + yFixer, fixedZ);
+				if(_UnitIndex == 1) output = new Vector3(-8, 4 + yFixer, fixedZ);
+				if(_UnitIndex == 2) output = new Vector3(-10, 0 + yFixer, fixedZ);
+				if(_UnitIndex == 3) output = new Vector3(-8, -4 + yFixer, fixedZ);
+				if(_UnitIndex == 4) output = new Vector3(-4, -7 + yFixer, fixedZ);
+				break;
+			case 6:
+				if(_UnitIndex == 0) output = new Vector3(-2, 7 + yFixer, fixedZ);
+				if(_UnitIndex == 1) output = new Vector3(-2, 3.5f + yFixer, fixedZ);
+				if(_UnitIndex == 2) output = new Vector3(-4, 0 + yFixer, fixedZ);
+				if(_UnitIndex == 3) output = new Vector3(-2, -3.5f + yFixer, fixedZ);
+				if(_UnitIndex == 4) output = new Vector3(-2, -7 + yFixer, fixedZ);
+				break;
+			case 7:
+				if(_UnitIndex == 0) output = new Vector3(-6, 7f + yFixer, fixedZ);
+				if(_UnitIndex == 1) output = new Vector3(-10, 3.5f + yFixer, fixedZ);
+				if(_UnitIndex == 2) output = new Vector3(-6, 0 + yFixer, fixedZ);
+				if(_UnitIndex == 3) output = new Vector3(-10, -3.5f + yFixer, fixedZ);
+				if(_UnitIndex == 4) output = new Vector3(-6, -6.5f + yFixer, fixedZ);
+				break;
+			case 8:
+				if(_UnitIndex == 0) output = new Vector3(-3, 3 + yFixer, fixedZ);
+				if(_UnitIndex == 1) output = new Vector3(-10, 0 + yFixer, fixedZ);
+				if(_UnitIndex == 2) output = new Vector3(-6, 0 + yFixer, fixedZ);
+				if(_UnitIndex == 3) output = new Vector3(-14, -0 + yFixer, fixedZ);
+				if(_UnitIndex == 4) output = new Vector3(-3, -3 + yFixer, fixedZ);
+				break;
+			case 9:
+				if(_UnitIndex == 0) output = new Vector3(-2, 3 + yFixer, fixedZ);
+				if(_UnitIndex == 1) output = new Vector3(-4, 1.5f + yFixer, fixedZ);
+				if(_UnitIndex == 2) output = new Vector3(-14, 0 + yFixer, fixedZ);
+				if(_UnitIndex == 3) output = new Vector3(-4, -1.5f + yFixer, fixedZ);
+				if(_UnitIndex == 4) output = new Vector3(-2, -3 + yFixer, fixedZ);
+				break;
+			case 10:
+				if(_UnitIndex == 0) output = new Vector3(-6.25f, 5 + yFixer, fixedZ);
+				if(_UnitIndex == 1) output = new Vector3(-6.25f, 0f + yFixer, fixedZ);
+				if(_UnitIndex == 2) output = new Vector3(-14, 0 + yFixer, fixedZ);
+				if(_UnitIndex == 3) output = new Vector3(-6.25f, -5f + yFixer, fixedZ);
+				if(_UnitIndex == 4) output = new Vector3(-2, -5 + yFixer, fixedZ);
+				break;
+			case 11:
+				if(_UnitIndex == 0) output = new Vector3(-6.25f, 2.5f + yFixer, fixedZ);
+				if(_UnitIndex == 1) output = new Vector3(-11f, 6f + yFixer, fixedZ);
+				if(_UnitIndex == 2) output = new Vector3(-14, 0 + yFixer, fixedZ);
+				if(_UnitIndex == 3) output = new Vector3(-11f, -6f + yFixer, fixedZ);
+				if(_UnitIndex == 4) output = new Vector3(-6.25f, -2.5f + yFixer, fixedZ);
+				break;
+			case 12:
+				if(_UnitIndex == 0) output = new Vector3(-9f, 6f + yFixer, fixedZ);
+				if(_UnitIndex == 1) output = new Vector3(-9f, -6f + yFixer, fixedZ);
+				if(_UnitIndex == 2) output = new Vector3(-14, 0 + yFixer, fixedZ);
+				if(_UnitIndex == 3) output = new Vector3(-9f, -0f + yFixer, fixedZ);
+				if(_UnitIndex == 4) output = new Vector3(-4f, -0f + yFixer, fixedZ);
+				break;
 		}
 		
 		return output;
@@ -108,6 +164,30 @@ public class FormationManager : MonoBehaviour {
 		case 4:
 			settings = new Vector4(300, 0);
 			break;
+		case 5:
+			settings = new Vector4(300, 0);
+			break;
+		case 6:
+			settings = new Vector4(300, 0);
+			break;
+		case 7:
+			settings = new Vector4(300, 0);
+			break;
+		case 8:
+			settings = new Vector4(300, 0);
+			break;
+		case 9:
+			settings = new Vector4(300, 0);
+			break;
+		case 10:
+			settings = new Vector4(300, 0);
+			break;
+		case 11:
+			settings = new Vector4(300, 0);
+			break;
+		case 12:
+			settings = new Vector4(300, 0);
+			break;
 		default:
 			settings = new Vector4(300, 0);
 			break;
@@ -125,22 +205,46 @@ public class FormationManager : MonoBehaviour {
 		string formationName;
 		switch (_formationID) {
 		case 0:
-			formationName = "1-2-2";
+			formationName = "2-0-2";
 			break;
 		case 1:
-			formationName = "1-3-1";
+			formationName = "3-0-1";
 			break;
 		case 2:
-			formationName = "1-2-1-1";
+			formationName = "2-1-1";
 			break;
 		case 3:
-			formationName = "1-4-0";
+			formationName = "4-0-0";
 			break;
 		case 4:
-			formationName = "1-1-1-1-1";
+			formationName = "1-1-1-1";
+			break;
+		case 5:
+			formationName = "0-2-2";
+			break;
+		case 6:
+			formationName = "0-0-5";
+			break;
+		case 7:
+			formationName = "2-3-0";
+			break;
+		case 8:
+			formationName = "1-1-2";
+			break;
+		case 9:
+			formationName = "0-0-4";
+			break;
+		case 10:
+			formationName = "0-3-1";
+			break;
+		case 11:
+			formationName = "2-2-0";
+			break;
+		case 12:
+			formationName = "1-2-2";
 			break;
 		default:
-			formationName = "1-2-2";
+			formationName = "0-3-1";
 			break;
 		}
 

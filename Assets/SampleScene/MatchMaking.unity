@@ -278,7 +278,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 365078878}
   m_HandleRect: {fileID: 365078877}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -385,7 +385,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &233369675
 GameObject:
@@ -775,7 +775,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7a827b594aa6aeb48abced41d9c55321, type: 3}
+    m_Font: {fileID: 12800000, guid: 2d9ffa84e04109141aaafa26bcd388d5, type: 3}
     m_FontSize: 132
     m_FontStyle: 1
     m_BestFit: 0
@@ -842,7 +842,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 518599628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -852,16 +852,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 37cc12c0a1dc1db49a749b45123c7aac, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!222 &518599631
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -916,7 +913,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 699200847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -926,16 +923,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 492a9af95abf510459f027f3e64a4980, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!222 &699200850
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1151,7 +1145,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7a827b594aa6aeb48abced41d9c55321, type: 3}
+    m_Font: {fileID: 12800000, guid: 2d9ffa84e04109141aaafa26bcd388d5, type: 3}
     m_FontSize: 66
     m_FontStyle: 0
     m_BestFit: 1
@@ -1229,7 +1223,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7a827b594aa6aeb48abced41d9c55321, type: 3}
+    m_Font: {fileID: 12800000, guid: 2d9ffa84e04109141aaafa26bcd388d5, type: 3}
     m_FontSize: 66
     m_FontStyle: 0
     m_BestFit: 0
@@ -1322,8 +1316,6 @@ MonoBehaviour:
   player2_avatar: {fileID: 699200849}
   playerMoney: {fileID: 898657544}
   playerCoin: {fileID: 1572973794}
-  Player1Coin_Set: {fileID: 1732715772}
-  Player2Coin_Set: {fileID: 1840000957}
 --- !u!4 &959276029
 Transform:
   m_ObjectHideFlags: 0
@@ -1332,11 +1324,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 959276027}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 827.8257, y: 474.3698, z: -109.165306}
-  m_LocalScale: {x: 1.309329, y: 1.309329, z: 1.309329}
+  m_LocalPosition: {x: 306.95642, y: 174.59245, z: -27.291327}
+  m_LocalScale: {x: 0.32733226, y: 0.32733226, z: 0.32733226}
   m_Children: []
-  m_Father: {fileID: 1413775804}
-  m_RootOrder: 18
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1040384175
 GameObject:
@@ -1469,7 +1461,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7a827b594aa6aeb48abced41d9c55321, type: 3}
+    m_Font: {fileID: 12800000, guid: 2d9ffa84e04109141aaafa26bcd388d5, type: 3}
     m_FontSize: 66
     m_FontStyle: 0
     m_BestFit: 0
@@ -1547,7 +1539,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7a827b594aa6aeb48abced41d9c55321, type: 3}
+    m_Font: {fileID: 12800000, guid: 2d9ffa84e04109141aaafa26bcd388d5, type: 3}
     m_FontSize: 52
     m_FontStyle: 0
     m_BestFit: 1
@@ -1826,9 +1818,8 @@ RectTransform:
   - {fileID: 706522662}
   - {fileID: 836097848}
   - {fileID: 1915613748}
-  - {fileID: 959276029}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1917,7 +1908,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2135343988}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2016,7 +2007,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7a827b594aa6aeb48abced41d9c55321, type: 3}
+    m_Font: {fileID: 12800000, guid: 2d9ffa84e04109141aaafa26bcd388d5, type: 3}
     m_FontSize: 66
     m_FontStyle: 0
     m_BestFit: 1
@@ -2372,7 +2363,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7a827b594aa6aeb48abced41d9c55321, type: 3}
+    m_Font: {fileID: 12800000, guid: 2d9ffa84e04109141aaafa26bcd388d5, type: 3}
     m_FontSize: 66
     m_FontStyle: 0
     m_BestFit: 0
@@ -2426,7 +2417,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0.00004014873}
   m_SizeDelta: {x: 0, y: 181.56207}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1732715770
@@ -2486,7 +2477,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7a827b594aa6aeb48abced41d9c55321, type: 3}
+    m_Font: {fileID: 12800000, guid: 2d9ffa84e04109141aaafa26bcd388d5, type: 3}
     m_FontSize: 132
     m_FontStyle: 1
     m_BestFit: 0
@@ -2721,7 +2712,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7a827b594aa6aeb48abced41d9c55321, type: 3}
+    m_Font: {fileID: 12800000, guid: 2d9ffa84e04109141aaafa26bcd388d5, type: 3}
     m_FontSize: 132
     m_FontStyle: 1
     m_BestFit: 0

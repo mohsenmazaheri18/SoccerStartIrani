@@ -31,7 +31,7 @@ public class TeamsManager : MonoBehaviour {
 			settings = new Vector4(5, 6, 5, 0);
 			break;
 		case 2:
-			settings = new Vector4(4, 8, 2, 1);
+			settings = new Vector4(4, 8, 2, 0);
 			break;
 		case 3:
 			settings = new Vector4(3, 6, 6, 0);
@@ -40,25 +40,25 @@ public class TeamsManager : MonoBehaviour {
 			settings = new Vector4(9, 3, 2, 0);
 			break;
 		case 5:
-			settings = new Vector4(3, 10, 3, 1);
+			settings = new Vector4(3, 10, 3, 0);
 			break;
 		case 6:
-			settings = new Vector4(5, 7, 4, 1);
+			settings = new Vector4(5, 7, 4, 0);
 			break;
 		case 7:
 			settings = new Vector4(4, 9, 5, 0);
 			break;
 		case 8:
-			settings = new Vector4(8, 3, 7, 1);
+			settings = new Vector4(8, 3, 7, 0);
 			break;
 		case 9:
 			settings = new Vector4(5, 6, 2, 0);
 			break;
 		case 10:
-			settings = new Vector4(3, 9, 5, 1);
+			settings = new Vector4(3, 9, 5, 0);
 			break;
 		case 11:
-			settings = new Vector4(5, 6, 2, 1);
+			settings = new Vector4(5, 6, 2, 0);
 			break;
 		case 12:
 			settings = new Vector4(4, 8, 4, 0);
@@ -67,31 +67,31 @@ public class TeamsManager : MonoBehaviour {
 			settings = new Vector4(3, 6, 6, 0);
 			break;
 		case 14:
-			settings = new Vector4(9, 3, 2, 1);
+			settings = new Vector4(9, 3, 2, 0);
 			break;
 		case 15:
-			settings = new Vector4(3, 10, 3, 1);
+			settings = new Vector4(3, 10, 3, 0);
 			break;
 		case 16:
 			settings = new Vector4(5, 7, 4, 0);
 			break;
 		case 17:
-			settings = new Vector4(4, 9, 5, 1);
+			settings = new Vector4(4, 9, 5, 0);
 			break;
 		case 18:
 			settings = new Vector4(8, 3, 7, 0);
 			break;
 		case 19:
-			settings = new Vector4(5, 6, 2, 1);
+			settings = new Vector4(5, 6, 2, 0);
 			break;
 		case 20:
-			settings = new Vector4(3, 9, 5, 1);
+			settings = new Vector4(3, 9, 5, 0);
 			break;
 		case 21:
 			settings = new Vector4(5, 6, 2, 0);
 			break;
 		case 22:
-			settings = new Vector4(4, 8, 4, 1);
+			settings = new Vector4(4, 8, 4, 0);
 			break;
 		case 23:
 			settings = new Vector4(3, 6, 6, 0);
@@ -100,28 +100,28 @@ public class TeamsManager : MonoBehaviour {
 			settings = new Vector4(9, 3, 2, 0);
 			break;
 		case 25:
-			settings = new Vector4(3, 10, 3, 1);
+			settings = new Vector4(3, 10, 3, 0);
 			break;
 		case 26:
-			settings = new Vector4(5, 7, 4, 1);
+			settings = new Vector4(5, 7, 4, 0);
 			break;
 		case 27:
 			settings = new Vector4(4, 9, 5, 0);
 			break;
 		case 28:
-			settings = new Vector4(8, 3, 7, 1);
+			settings = new Vector4(8, 3, 7, 0);
 			break;
 		case 29:
 			settings = new Vector4(5, 6, 2, 0);
 			break;
 		case 30:
-			settings = new Vector4(3, 9, 5, 1);
+			settings = new Vector4(3, 9, 5, 0);
 			break;
 		case 31:
 			settings = new Vector4(4, 3, 5, 0);
 			break;
 		default:
-			settings = new Vector4(3, 3, 0, 1);
+			settings = new Vector4(3, 3, 0, 0);
 			break;
 		}
 

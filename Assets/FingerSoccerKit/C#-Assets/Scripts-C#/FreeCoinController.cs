@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class FreeCoinController : MonoBehaviour {
 
@@ -15,6 +16,8 @@ public class FreeCoinController : MonoBehaviour {
 	public int prizeAmount = 10;		//amount
 	public int prizeTimeInterval = 6; 	//Hours
 
+	public Button FreeCoin;
+
 	private DateTime baseTime = new System.DateTime(1970, 1, 1, 8, 0, 0, System.DateTimeKind.Utc);
 	private int timestamp;
 
@@ -22,8 +25,6 @@ public class FreeCoinController : MonoBehaviour {
 
 	void Awake (){
 		
-		//deactivate the button upon game start
-		GetComponent<BoxCollider> ().enabled = false;
 		tapFlag = false;
 			
 		//set UI text
@@ -35,50 +36,21 @@ public class FreeCoinController : MonoBehaviour {
 
 	IEnumerator Start (){
 		
+		FreeCoin.onClick.AddListener(() =>
+		{
+			//set tap flag
+			tapFlag = true;
+			//get available coins
+			int availableCoins = PlayerPrefs.GetInt("PlayerMoney");
+			PlayerPrefs.SetInt("PlayerMoney", availableCoins + prizeAmount);
+			SceneManager.LoadScene("Home");
+		});
 		//activate the button
 		yield return new WaitForSeconds(1.0f);
 		GetComponent<BoxCollider> ().enabled = true;
 
 	}
 
-
-	void Update() {
-
-		if(!tapFlag)
-			StartCoroutine(tapManager());
-
-	}
-
-
-	private RaycastHit hitInfo;
-	private Ray ray;
-	IEnumerator tapManager (){
-
-		//Mouse of touch?
-		if(	Input.touches.Length > 0 && Input.touches[0].phase == TouchPhase.Ended)  
-			ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
-		else if(Input.GetMouseButtonUp(0))
-			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		else
-			yield break;
-
-		if (Physics.Raycast(ray, out hitInfo)) {
-			GameObject objectHit = hitInfo.transform.gameObject;
-			switch (objectHit.name) {
-			case "FreeCoinsButton":
-				//set tap flag
-				tapFlag = true;
-				//get available coins
-				int availableCoins = PlayerPrefs.GetInt("PlayerMoney");
-				PlayerPrefs.SetInt("PlayerMoney", availableCoins + prizeAmount);
-				//wait
-				yield return new WaitForSeconds(1.0f);
-				//reload
-				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-				break;
-			}
-		}
-	}
 
 
 	void enableFreeCoins() {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IngameFormation : MonoBehaviour {
 
@@ -12,13 +13,19 @@ public class IngameFormation : MonoBehaviour {
 	//so we assign an ID for each one to know who is sending the request.
 	// ID 1 = Player-1
 	// ID 2 = Player-2
+	
 	public static int formationChangeRequestID;
-
-	public GameObject[] availableFormationButtons;	//array containing all formation buttons we are using inisde "newFormationPlane" game object
-
+	
+	[Header("Button Canvas Foramtion In Game")]
+	public Button Formation_1;
+	public Button Formation_2,Formation_3,Formation_4,Formation_5,Formation_6,Formation_7,Formation_8,Formation_9,Formation_10,Formation_11,Formation_12,Formation_13,done;
+	
+	[Header("GameObject Canvas")]
 	public GameObject tickGo;
-	public GameObject requestByLabel;
+	public Text requestByLabel;
 
+	[Header("Manage Canvas")]
+	public GameObject Formation;
 	private int player1Formation;
 	private int player2Formation;
 
@@ -26,7 +33,77 @@ public class IngameFormation : MonoBehaviour {
 	void Start () {
 
 		//fetchFormations ();
-
+		
+		Formation_1.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (0);
+			moveTickToPosition(Formation_1.gameObject.transform.position);
+		});
+		Formation_2.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (1);
+			moveTickToPosition(Formation_2.gameObject.transform.position);
+		});
+		Formation_3.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (2);
+			moveTickToPosition(Formation_3.gameObject.transform.position);
+		});
+		Formation_4.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (3);
+			moveTickToPosition(Formation_4.gameObject.transform.position);
+		});
+		Formation_5.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (4);
+			moveTickToPosition(Formation_5.gameObject.transform.position);
+		});
+		Formation_6.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (5);
+			moveTickToPosition(Formation_6.gameObject.transform.position);
+		});
+		Formation_7.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (6);
+			moveTickToPosition(Formation_7.gameObject.transform.position);
+		});
+		Formation_8.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (7);
+			moveTickToPosition(Formation_8.gameObject.transform.position);
+		});
+		Formation_9.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (8);
+			moveTickToPosition(Formation_9.gameObject.transform.position);
+		});
+		Formation_10.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (9);
+			moveTickToPosition(Formation_10.gameObject.transform.position);
+		});
+		Formation_11.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (10);
+			moveTickToPosition(Formation_11.gameObject.transform.position);
+		});
+		Formation_12.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (11);
+			moveTickToPosition(Formation_12.gameObject.transform.position);
+		});
+		Formation_13.onClick.AddListener(() =>
+		{
+			saveNewFormationSetting (12);
+			moveTickToPosition(Formation_13.gameObject.transform.position);
+		});
+		done.onClick.AddListener(() =>
+		{
+			Formation.SetActive(false);
+		});
+		
 	}
 
 	void OnEnable() {
@@ -47,66 +124,18 @@ public class IngameFormation : MonoBehaviour {
 		print ("formationChangeRequestID: " + formationChangeRequestID);
 		print ("player1FormationID: " + player1Formation + " | player2FormationID: " + player2Formation);
 
-		if (formationChangeRequestID == 1)
-			moveTickToPosition ( availableFormationButtons[player1Formation].transform.position );
+	/*	if (formationChangeRequestID == 1)
+			moveTickToPosition ( Formation_1[player1Formation].transform.position );
 		else if (formationChangeRequestID == 2)
-			moveTickToPosition ( availableFormationButtons[player2Formation].transform.position );	
-
+			moveTickToPosition ( Formation_1[player2Formation].transform.position );	
+*/
 	}
 		
 	
 	void Update () {
-
-		touchManager ();
-
+		
 		//monitor request label text
-		requestByLabel.GetComponent<TextMesh> ().text = "(Player " + formationChangeRequestID + ")";
-	}
-
-
-	private RaycastHit hitInfo;
-	private Ray ray;
-	void touchManager (){
-
-		//Mouse of touch?
-		if(	Input.touches.Length > 0 && Input.touches[0].phase == TouchPhase.Ended)  
-			ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
-		else if(Input.GetMouseButtonUp(0))
-			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		else
-			return;
-
-		if (Physics.Raycast(ray, out hitInfo)) {
-			GameObject objectHit = hitInfo.transform.gameObject;
-			switch(objectHit.name) {
-
-			case "BtnFormation-01":								
-				moveTickToPosition (objectHit.transform.position);
-				saveNewFormationSetting (0);
-				break;
-
-			case "BtnFormation-02":								
-				moveTickToPosition (objectHit.transform.position);
-				saveNewFormationSetting (1);
-				break;
-
-			case "BtnFormation-03":								
-				moveTickToPosition (objectHit.transform.position);
-				saveNewFormationSetting (2);
-				break;
-
-			case "BtnFormation-04":								
-				moveTickToPosition (objectHit.transform.position);
-				saveNewFormationSetting (3);
-				break;
-
-			case "BtnFormation-05":								
-				moveTickToPosition (objectHit.transform.position);
-				saveNewFormationSetting (4);
-				break;
-			
-			}	
-		}
+		requestByLabel.text = "(Player " + formationChangeRequestID + ")";
 	}
 
 
@@ -115,9 +144,7 @@ public class IngameFormation : MonoBehaviour {
 	/// </summary>
 	/// <param name="newPos">New position.</param>
 	void moveTickToPosition(Vector3 newPos) {
-
-		//unhide tick
-		tickGo.GetComponent<Renderer>().enabled = true;
+		
 
 		//move tick over the selected formation image
 		tickGo.transform.position = newPos + new Vector3 (0, 0, -1);
@@ -140,6 +167,4 @@ public class IngameFormation : MonoBehaviour {
 		print("New formation setting has been saved for Player " + formationChangeRequestID + " | Formation ID: " + newFormationID);
 
 	}
-
-
 }

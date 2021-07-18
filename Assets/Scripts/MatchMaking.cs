@@ -4,6 +4,7 @@ using FiroozehGameService.Core.GSLive;
 using FiroozehGameService.Handlers;
 using FiroozehGameService.Models.GSLive.Command;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utils;
 
@@ -12,7 +13,6 @@ public class MatchMaking : MonoBehaviour
     
     
     //Match Making Game
-    
     public Text NickName_Player1;
     public Text NickName_Player2;
     public GameObject player_role; 
@@ -22,11 +22,10 @@ public class MatchMaking : MonoBehaviour
     public Text playerMoney;
     public Text playerCoin;
     
-    public GameObject Match_Menu;
-    public GameObject Game;
     public async void Cansel_AutoMatch()
     {
         await GameService.GSLive.TurnBased().CancelAutoMatch();
+        StartCoroutine(Wait_To_Back_Home());
     }
 
 
@@ -75,8 +74,13 @@ public class MatchMaking : MonoBehaviour
     IEnumerator Wait_To_Sprite_Stay()
     {
         yield return new WaitForSeconds(2f);
-        Match_Menu.SetActive(false);
-        Game.SetActive(true);
+        SceneManager.LoadScene("Game-c#");
+    }
+    
+    IEnumerator Wait_To_Back_Home()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Home");
     }
     
     //Start When
