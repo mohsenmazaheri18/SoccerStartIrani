@@ -20,7 +20,7 @@ public class Profile_Details : MonoBehaviour
     
     [Header("Canvas Manage")]
     public Canvas profile;
-    public Canvas form, mohre;
+    public Canvas form, mohre, MenuAsli;
     
     // Start is called before the first frame update
     async void Start()
@@ -30,13 +30,19 @@ public class Profile_Details : MonoBehaviour
         id_name.text = "(UserId: "+get_data.Name+" )";
 
         back.onClick.AddListener(()=>
-       {
-          this.gameObject.SetActive(false);
-       });
+        {
+            profile.enabled = false;
+            MenuAsli.enabled = true;
+        });
         buy_form.onClick.AddListener(()=>
         {
             profile.enabled = false;
             form.enabled = true;
+        });
+        buy_Mohre.onClick.AddListener(() =>
+        {
+            profile.enabled = false;
+            mohre.enabled = true;
         });
     }
 

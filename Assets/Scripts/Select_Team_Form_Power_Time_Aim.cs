@@ -33,7 +33,7 @@ public class Select_Team_Form_Power_Time_Aim : MonoBehaviour {
 		PlayerPrefs.SetInt("Used_Click", 0);
 
 			//The Slider Power & Aim & Time in my profile mohreh
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 32; i++)
         {
 	        p1PowerBar[i].transform.localScale = new Vector3(
 		        TeamsManager.getTeamSettings(i).x / barScaleDivider,
@@ -53,202 +53,16 @@ public class Select_Team_Form_Power_Time_Aim : MonoBehaviour {
 
 	}
 
-	 void Start()
+	void Start()
 	{
 		//use team when click in profile Mohreh and player prefs actived!
-		Use_Team[0].onClick.AddListener(() =>
+		for (int i = 0; i < Use_Team.Length; i++)
 		{
-			used_Team_After_Click[0].SetActive(true);
-			used_Team_After_Click[1].SetActive(false);
-			used_Team_After_Click[2].SetActive(false);
-			used_Team_After_Click[3].SetActive(false);
-			used_Team_After_Click[4].SetActive(false);
-			used_Team_After_Click[5].SetActive(false);
-			used_Team_After_Click[6].SetActive(false);
-			used_Team_After_Click[7].SetActive(false);
-			used_Team_After_Click[8].SetActive(false);
-			used_Team_After_Click[9].SetActive(false);
-			used_Team_After_Click[10].SetActive(false);
-			used_Team_After_Click[11].SetActive(false);
-			
-			PlayerPrefs.SetInt("PlayerFlag", 0);
-		});
-		Use_Team[1].onClick.AddListener(() =>
-		{
-			used_Team_After_Click[1].SetActive(true);
-			used_Team_After_Click[0].SetActive(false);
-			used_Team_After_Click[2].SetActive(false);
-			used_Team_After_Click[3].SetActive(false);
-			used_Team_After_Click[4].SetActive(false);
-			used_Team_After_Click[5].SetActive(false);
-			used_Team_After_Click[6].SetActive(false);
-			used_Team_After_Click[7].SetActive(false);
-			used_Team_After_Click[8].SetActive(false);
-			used_Team_After_Click[9].SetActive(false);
-			used_Team_After_Click[10].SetActive(false);
-			used_Team_After_Click[11].SetActive(false);
-			PlayerPrefs.SetInt("PlayerFlag", 1);
-		});
-		Use_Team[2].onClick.AddListener(() =>
-		{
-			used_Team_After_Click[2].SetActive(true);
-			used_Team_After_Click[1].SetActive(false);
-			used_Team_After_Click[0].SetActive(false);
-			used_Team_After_Click[3].SetActive(false);
-			used_Team_After_Click[4].SetActive(false);
-			used_Team_After_Click[5].SetActive(false);
-			used_Team_After_Click[6].SetActive(false);
-			used_Team_After_Click[7].SetActive(false);
-			used_Team_After_Click[8].SetActive(false);
-			used_Team_After_Click[9].SetActive(false);
-			used_Team_After_Click[10].SetActive(false);
-			used_Team_After_Click[11].SetActive(false);
-			PlayerPrefs.SetInt("PlayerFlag", 2);
-		});
-		Use_Team[3].onClick.AddListener(() =>
-		{
-			used_Team_After_Click[3].SetActive(true);
-			used_Team_After_Click[1].SetActive(false);
-			used_Team_After_Click[0].SetActive(false);
-			used_Team_After_Click[2].SetActive(false);
-			used_Team_After_Click[4].SetActive(false);
-			used_Team_After_Click[5].SetActive(false);
-			used_Team_After_Click[6].SetActive(false);
-			used_Team_After_Click[7].SetActive(false);
-			used_Team_After_Click[8].SetActive(false);
-			used_Team_After_Click[9].SetActive(false);
-			used_Team_After_Click[10].SetActive(false);
-			used_Team_After_Click[11].SetActive(false);
-			PlayerPrefs.SetInt("PlayerFlag", 3);
-		});
-		Use_Team[4].onClick.AddListener(() =>
-		{
-			used_Team_After_Click[4].SetActive(true);
-			used_Team_After_Click[1].SetActive(false);
-			used_Team_After_Click[0].SetActive(false);
-			used_Team_After_Click[3].SetActive(false);
-			used_Team_After_Click[2].SetActive(false);
-			used_Team_After_Click[5].SetActive(false);
-			used_Team_After_Click[6].SetActive(false);
-			used_Team_After_Click[7].SetActive(false);
-			used_Team_After_Click[8].SetActive(false);
-			used_Team_After_Click[9].SetActive(false);
-			used_Team_After_Click[10].SetActive(false);
-			used_Team_After_Click[11].SetActive(false);
-			PlayerPrefs.SetInt("PlayerFlag", 4);
-		});
-		Use_Team[5].onClick.AddListener(() =>
-		{
-			used_Team_After_Click[5].SetActive(true);
-			used_Team_After_Click[1].SetActive(false);
-			used_Team_After_Click[0].SetActive(false);
-			used_Team_After_Click[3].SetActive(false);
-			used_Team_After_Click[4].SetActive(false);
-			used_Team_After_Click[2].SetActive(false);
-			used_Team_After_Click[6].SetActive(false);
-			used_Team_After_Click[7].SetActive(false);
-			used_Team_After_Click[8].SetActive(false);
-			used_Team_After_Click[9].SetActive(false);
-			used_Team_After_Click[10].SetActive(false);
-			used_Team_After_Click[11].SetActive(false);
-			PlayerPrefs.SetInt("PlayerFlag", 5);
-		});
-		Use_Team[6].onClick.AddListener(() =>
-		{
-			used_Team_After_Click[6].SetActive(true);
-			used_Team_After_Click[1].SetActive(false);
-			used_Team_After_Click[0].SetActive(false);
-			used_Team_After_Click[3].SetActive(false);
-			used_Team_After_Click[4].SetActive(false);
-			used_Team_After_Click[5].SetActive(false);
-			used_Team_After_Click[2].SetActive(false);
-			used_Team_After_Click[7].SetActive(false);
-			used_Team_After_Click[8].SetActive(false);
-			used_Team_After_Click[9].SetActive(false);
-			used_Team_After_Click[10].SetActive(false);
-			used_Team_After_Click[11].SetActive(false);
-			PlayerPrefs.SetInt("PlayerFlag", 6);
-		});
-		Use_Team[7].onClick.AddListener(() =>
-		{
-			used_Team_After_Click[7].SetActive(true);
-			used_Team_After_Click[1].SetActive(false);
-			used_Team_After_Click[0].SetActive(false);
-			used_Team_After_Click[3].SetActive(false);
-			used_Team_After_Click[4].SetActive(false);
-			used_Team_After_Click[5].SetActive(false);
-			used_Team_After_Click[6].SetActive(false);
-			used_Team_After_Click[2].SetActive(false);
-			used_Team_After_Click[8].SetActive(false);
-			used_Team_After_Click[9].SetActive(false);
-			used_Team_After_Click[10].SetActive(false);
-			used_Team_After_Click[11].SetActive(false);
-			PlayerPrefs.SetInt("PlayerFlag", 7);
-		});
-		Use_Team[8].onClick.AddListener(() =>
-		{
-			used_Team_After_Click[8].SetActive(true);
-			used_Team_After_Click[1].SetActive(false);
-			used_Team_After_Click[0].SetActive(false);
-			used_Team_After_Click[3].SetActive(false);
-			used_Team_After_Click[4].SetActive(false);
-			used_Team_After_Click[5].SetActive(false);
-			used_Team_After_Click[6].SetActive(false);
-			used_Team_After_Click[7].SetActive(false);
-			used_Team_After_Click[2].SetActive(false);
-			used_Team_After_Click[9].SetActive(false);
-			used_Team_After_Click[10].SetActive(false);
-			used_Team_After_Click[11].SetActive(false);
-			PlayerPrefs.SetInt("PlayerFlag", 8);
-		});
-		Use_Team[9].onClick.AddListener(() =>
-		{
-			used_Team_After_Click[9].SetActive(true);
-			used_Team_After_Click[1].SetActive(false);
-			used_Team_After_Click[0].SetActive(false);
-			used_Team_After_Click[3].SetActive(false);
-			used_Team_After_Click[4].SetActive(false);
-			used_Team_After_Click[5].SetActive(false);
-			used_Team_After_Click[6].SetActive(false);
-			used_Team_After_Click[7].SetActive(false);
-			used_Team_After_Click[8].SetActive(false);
-			used_Team_After_Click[2].SetActive(false);
-			used_Team_After_Click[10].SetActive(false);
-			used_Team_After_Click[11].SetActive(false);
-			PlayerPrefs.SetInt("PlayerFlag", 9);
-		});
-		Use_Team[10].onClick.AddListener(() =>
-		{
-			used_Team_After_Click[10].SetActive(true);
-			used_Team_After_Click[1].SetActive(false);
-			used_Team_After_Click[0].SetActive(false);
-			used_Team_After_Click[3].SetActive(false);
-			used_Team_After_Click[4].SetActive(false);
-			used_Team_After_Click[5].SetActive(false);
-			used_Team_After_Click[6].SetActive(false);
-			used_Team_After_Click[7].SetActive(false);
-			used_Team_After_Click[8].SetActive(false);
-			used_Team_After_Click[9].SetActive(false);
-			used_Team_After_Click[2].SetActive(false);
-			used_Team_After_Click[11].SetActive(false);
-			PlayerPrefs.SetInt("PlayerFlag", 10);
-		});
-		Use_Team[11].onClick.AddListener(() =>
-		{
-			used_Team_After_Click[11].SetActive(true);
-			used_Team_After_Click[1].SetActive(false);
-			used_Team_After_Click[0].SetActive(false);
-			used_Team_After_Click[3].SetActive(false);
-			used_Team_After_Click[4].SetActive(false);
-			used_Team_After_Click[5].SetActive(false);
-			used_Team_After_Click[6].SetActive(false);
-			used_Team_After_Click[7].SetActive(false);
-			used_Team_After_Click[8].SetActive(false);
-			used_Team_After_Click[9].SetActive(false);
-			used_Team_After_Click[10].SetActive(false);
-			used_Team_After_Click[2].SetActive(false);
-			PlayerPrefs.SetInt("PlayerFlag", 11);
-		});
+			Use_Team[i].onClick.AddListener(() =>
+			{
+				button_True_False(true);
+			});
+		}
 	}
 
 
@@ -267,6 +81,11 @@ public class Select_Team_Form_Power_Time_Aim : MonoBehaviour {
 			} else
 				teamLock.SetActive (true);
 		}			
+	}
+
+	void button_True_False(bool falsed)
+	{
+		used_Team_After_Click[0].SetActive(falsed);
 	}
 
 	//*****************************************************************************

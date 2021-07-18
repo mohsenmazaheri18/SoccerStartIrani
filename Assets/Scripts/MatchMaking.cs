@@ -1,57 +1,52 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections;
 using FiroozehGameService.Core;
 using FiroozehGameService.Core.GSLive;
 using FiroozehGameService.Handlers;
-using FiroozehGameService.Models.Consts;
-using FiroozehGameService.Models.Enums.GSLive.Command;
 using FiroozehGameService.Models.GSLive.Command;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utils;
 
 public class MatchMaking : MonoBehaviour
 {
+    
+    
+    //Match Making Game
+    
     public Text NickName_Player1;
     public Text NickName_Player2;
-    public GameObject player_role;
-    public Image player1_avatar;
-    public Image player2_avatar;
+    public GameObject player_role; 
+    public RawImage player1_avatar;
+    public RawImage player2_avatar;
     
     public Text playerMoney;
     public Text playerCoin;
-
+    
+    public GameObject Match_Menu;
+    public GameObject Game;
     public async void Cansel_AutoMatch()
     {
         await GameService.GSLive.TurnBased().CancelAutoMatch();
-        
     }
 
-    // Start is called before the first frame update
-    async void Start()
-    {
-        playerMoney.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerMoney");
-        playerCoin.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerCoin");
-        
-        
-        SetEventHandelers();
-        await GameService.GSLive.TurnBased().AutoMatch(new GSLiveOption.AutoMatchOption("Test", 2, 2, false));
-    }
-    
+
     private void SetEventHandelers()
     {
-        TurnBasedEventHandlers.AutoMatchUpdated += AutoMatchUpdated;
-        TurnBasedEventHandlers.JoinedRoom += JoinedRoom;
+	    TurnBasedEventHandlers.AutoMatchUpdated += AutoMatchUpdated;
+	    TurnBasedEventHandlers.JoinedRoom += JoinedRoom;
     }
-    private void JoinedRoom(object sender, JoinEvent joinEvent)
+
+    private async void JoinedRoom(object sender, JoinEvent joinEvent)
     {
         Debug.Log("JoinedRoom : " + joinEvent.JoinData.RoomData.Name);
         
-        if (joinEvent.JoinData.RoomData.Max==2)
+        
+            await GameService.GSLive.TurnBased().GetCurrentTurnMember();
+
+            if (joinEvent.JoinData.RoomData.Max==2)
         {
             player_role.SetActive(false);
+            StartCoroutine(Wait_To_Sprite_Stay());
         }
     }
 
@@ -63,20 +58,34 @@ public class MatchMaking : MonoBehaviour
             player2_avatar.gameObject.SetActive(true);
             NickName_Player1.text = matchEvent.Players[0].Name;
             NickName_Player2.text = matchEvent.Players[1].Name;
-            player1_avatar.sprite = player1_avatar.sprite;
-            player2_avatar.sprite = player2_avatar.sprite;
+            StartCoroutine(RawImage_Utils.DownloadImage(matchEvent.Players[0].Logo, player1_avatar));
+            StartCoroutine(RawImage_Utils.DownloadImage(matchEvent.Players[1].Logo, player2_avatar));
         }
         if (matchEvent.Players[1].User.IsMe)
         {
             player2_avatar.gameObject.SetActive(true);
             NickName_Player1.text = matchEvent.Players[1].Name;
             NickName_Player2.text = matchEvent.Players[0].Name;
-            player2_avatar.sprite = player2_avatar.sprite;
-            player1_avatar.sprite = player1_avatar.sprite;
+            StartCoroutine(RawImage_Utils.DownloadImage(matchEvent.Players[1].Logo, player1_avatar));
+            StartCoroutine(RawImage_Utils.DownloadImage(matchEvent.Players[0].Logo, player2_avatar));
+            
         }
     }
 
-    private void Update()
+    IEnumerator Wait_To_Sprite_Stay()
     {
+        yield return new WaitForSeconds(2f);
+        Match_Menu.SetActive(false);
+        Game.SetActive(true);
     }
+    
+    //Start When
+    async void Start (){
+	    playerMoney.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerMoney");
+	    playerCoin.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerCoin");
+	    SetEventHandelers();
+	    await GameService.GSLive.TurnBased().AutoMatch(new GSLiveOption.AutoMatchOption("Test", 2, 2, false));
+	    await GameService.GSLive.TurnBased().GetCurrentRoomInfo();
+    }
+
 }

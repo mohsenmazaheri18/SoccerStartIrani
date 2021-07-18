@@ -1,23 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FiroozehGameService.Core;
-using FiroozehGameService.Core.GSLive;
-using FiroozehGameService.Handlers;
 using FiroozehGameService.Models;
-using FiroozehGameService.Models.Enums.GSLive;
-using FiroozehGameService.Models.GSLive;
-using FiroozehGameService.Models.GSLive.Command;
-using FiroozehGameService.Models.GSLive.TB;
 using Google;
-using Newtonsoft.Json;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Utils;
-using Debug = UnityEngine.Debug;
 using FileUtil = Utils.FileUtil;
 
 public class MenuController_Login : MonoBehaviour
@@ -36,6 +23,7 @@ public class MenuController_Login : MonoBehaviour
     [Header("Login Mode ID Button")]
     public Button Submit;
     public GameObject SwitchToRegisterOrLogin;
+    public Button ClickTo_Join_Chat_Red, ClickTo_Join_Chat_Blue;
 
     [Header("Login Mode ID Input Field")] 
     public InputField NickName;
@@ -45,9 +33,18 @@ public class MenuController_Login : MonoBehaviour
     [Header("Canvas And Object To Start Game")]
     public Canvas Mode_Canvas;
     public Canvas Id_Login_Canvas;
+    public Canvas Question_Canvas;
 
     private async void Start()
     {
+        ClickTo_Join_Chat_Red.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("Home");
+        });
+        ClickTo_Join_Chat_Blue.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("Home");
+        });
         //var user = await GameService.Player.GetCurrentPlayer();
         //Debug.Log(user.Name);
        /* Google.onClick.AddListener(() =>
@@ -73,7 +70,7 @@ public class MenuController_Login : MonoBehaviour
             await GameService.LoginOrSignUp.LoginAsGuest();
             SceneManager.LoadScene("Home");
         });
-        
+
         SwitchToRegisterOrLogin.GetComponent<Button>().onClick.AddListener(() =>
         {
             if (NickName.IsActive())
@@ -135,6 +132,14 @@ public class MenuController_Login : MonoBehaviour
                         {
                             var userToken = await GameService.LoginOrSignUp.SignUp(nickName, email, pass);
                             FileUtil.SaveUserToken(userToken);
+                            
+                            if (email == "Daryoushfaeghi@gmail.com" &&pass=="Daryoush235@")
+                            {
+                                SceneManager.LoadScene("Admin_Home");
+                            }
+
+                            // Disable LoginUI
+                            Question_Canvas.enabled = true;
                         }
 
                     }
@@ -149,6 +154,11 @@ public class MenuController_Login : MonoBehaviour
                         {
                             var userToken = await GameService.LoginOrSignUp.Login(email, pass);
                             FileUtil.SaveUserToken(userToken);
+
+                            if (email == "Daryoushfaeghi@gmail.com"&&pass=="Daryoush235@")
+                            {
+                                SceneManager.LoadScene("Admin_Home");
+                            }
 
                             // Disable LoginUI
                             SceneManager.LoadScene("Home");

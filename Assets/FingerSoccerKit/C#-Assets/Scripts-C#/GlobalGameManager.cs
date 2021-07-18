@@ -2,13 +2,10 @@ using UnityEngine;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using FiroozehGameService.Core;
 using UnityEngine.SceneManagement;
 
-public class GlobalGameManager : MonoBehaviour
-{
-
+public class GlobalGameManager : MonoBehaviour {
+		
 	///*************************************************************************///
 	/// Main Game Controller.
 	/// This class controls main aspects of the game like rounds, levels, scores and ...
@@ -20,7 +17,7 @@ public class GlobalGameManager : MonoBehaviour
 	/// You can do this with RigidBody's freeze position.
 	///*************************************************************************///
 
-	public static string player1Name;
+	public static string player1Name = "Player_1";
 	public static string player2Name = "Player_2";
 	public static string cpuName = "CPU";
 
@@ -123,11 +120,8 @@ public class GlobalGameManager : MonoBehaviour
 	//*****************************************************************************
 	// Init. 
 	//*****************************************************************************
-	async void Awake ()
-	{
+	void Awake (){	
 
-		var getDataPlayer  = await GameService.Player.GetCurrentPlayer();
-		player1Name = getDataPlayer.Name;
 		//debug
 		//PlayerPrefs.DeleteAll();
 

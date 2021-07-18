@@ -1,7 +1,0 @@
-<dependencies>
-  <packages>
-    <package>com.google.android.gms:play-services-auth:10+</package>
-    <package>com.google.signin:google-signin-support:1.0.3</package>
-  </packages>
-  <files />
-</dependencies>

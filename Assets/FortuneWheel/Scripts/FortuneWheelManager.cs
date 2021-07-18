@@ -15,20 +15,24 @@ public class FortuneWheelManager : MonoBehaviour
     public GameObject Circle; 			// Rotatable Object with rewards
     public Text CoinsDeltaText; 		// Pop-up text with wasted or rewarded coins amount
     public Text CurrentCoinsText; 		// Pop-up text with wasted or rewarded coins amount
+    public Text CurrentMoneyText; 		// Pop-up text with wasted or rewarded coins amount
     public int TurnCost = 300;			// How much coins user waste when turn whe wheel
-    public int CurrentCoinsAmount = 1000;	// Started coins amount. In your project it can be set up from CoinsManager or from PlayerPrefs and so on
+    public int availableCoin = 300;	// Started coins amount. In your project it can be set up from CoinsManager or from PlayerPrefs and so on
     public int PreviousCoinsAmount;		// For wasted coins animation
 
     private void Awake ()
     {
-        PreviousCoinsAmount = CurrentCoinsAmount;
-        CurrentCoinsText.text = CurrentCoinsAmount.ToString ();
+	    CurrentMoneyText.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerMoney");
+	    
+	    availableCoin = PlayerPrefs.GetInt("PlayerCoin");
+	    CurrentCoinsText.GetComponent<Text>().text = "" + availableCoin;
+	    
     }
 
     public void TurnWheel ()
     {
     	// Player has enough money to turn the wheel
-        if (CurrentCoinsAmount >= TurnCost) {
+        if (availableCoin >= TurnCost) {
     	    _currentLerpRotationTime = 0f;
     	
     	    // Fill the necessary angles (for example if you want to have 12 sectors you need to fill the angles with 30 degrees step)
@@ -41,10 +45,10 @@ public class FortuneWheelManager : MonoBehaviour
     	    _finalAngle = -(fullCircles * 360 + randomFinalAngle);
     	    _isStarted = true;
     	
-    	    PreviousCoinsAmount = CurrentCoinsAmount;
+    	    PreviousCoinsAmount = availableCoin;
     	
     	    // Decrease money for the turn
-    	    CurrentCoinsAmount -= TurnCost;
+            availableCoin -= TurnCost;
     	
     	    // Show wasted coins
     	    CoinsDeltaText.text = "-" + TurnCost;
@@ -105,7 +109,7 @@ public class FortuneWheelManager : MonoBehaviour
     void Update ()
     {
         // Make turn button non interactable if user has not enough money for the turn
-    	if (_isStarted || CurrentCoinsAmount < TurnCost) {
+    	if (_isStarted || availableCoin < TurnCost) {
     	    TurnButton.interactable = false;
     	    TurnButton.GetComponent<Image>().color = new Color(255, 255, 255, 0.5f);
     	} else {
@@ -142,7 +146,7 @@ public class FortuneWheelManager : MonoBehaviour
 
     private void RewardCoins (int awardCoins)
     {
-        CurrentCoinsAmount += awardCoins;
+	    availableCoin += awardCoins;
         CoinsDeltaText.text = "+" + awardCoins;
         CoinsDeltaText.gameObject.SetActive (true);
         StartCoroutine (UpdateCoinsAmount ());
@@ -161,13 +165,13 @@ public class FortuneWheelManager : MonoBehaviour
     	float elapsedTime = 0;
     
     	while (elapsedTime < seconds) {
-    	    CurrentCoinsText.text = Mathf.Floor(Mathf.Lerp (PreviousCoinsAmount, CurrentCoinsAmount, (elapsedTime / seconds))).ToString ();
+    	    CurrentCoinsText.text = Mathf.Floor(Mathf.Lerp (PreviousCoinsAmount, availableCoin, (elapsedTime / seconds))).ToString ();
     	    elapsedTime += Time.deltaTime;
     
     	    yield return new WaitForEndOfFrame ();
         }
-    
-    	PreviousCoinsAmount = CurrentCoinsAmount;
-    	CurrentCoinsText.text = CurrentCoinsAmount.ToString ();
+        
+        availableCoin = PlayerPrefs.GetInt("PlayerCoin");
+        CurrentCoinsText.GetComponent<Text>().text = "" + availableCoin;
     }
 }
