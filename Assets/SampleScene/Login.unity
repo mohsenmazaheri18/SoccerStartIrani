@@ -792,6 +792,7 @@ GameObject:
   - component: {fileID: 253443809}
   - component: {fileID: 253443808}
   - component: {fileID: 253443807}
+  - component: {fileID: 253443811}
   m_Layer: 5
   m_Name: Question_Esteghlal_Perspolice
   m_TagString: Untagged
@@ -882,6 +883,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &253443811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253443806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a567426076d714bbe893bb49434aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Esteghlal: {fileID: 0}
+  Perspolice: {fileID: 0}
 --- !u!1 &286479034
 GameObject:
   m_ObjectHideFlags: 0

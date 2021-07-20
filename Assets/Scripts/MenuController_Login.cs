@@ -1,6 +1,7 @@
 ﻿using System;
 using FiroozehGameService.Core;
 using FiroozehGameService.Models;
+using FiroozehGameService.Models.Consts;
 using Google;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -35,8 +36,17 @@ public class MenuController_Login : MonoBehaviour
     public Canvas Id_Login_Canvas;
     public Canvas Question_Canvas;
 
+    
     private async void Start()
     {
+        //load email player prefs
+        string SaveEmail = PlayerPrefs.GetString("SaveEmail");
+        Email.text = SaveEmail;
+        
+        //load password player prefs
+        string SavePass = PlayerPrefs.GetString("SavePass");
+        Password.text = SavePass;
+        
         ClickTo_Join_Chat_Red.onClick.AddListener(() =>
         {
             SceneManager.LoadScene("Home");
@@ -133,6 +143,14 @@ public class MenuController_Login : MonoBehaviour
                             var userToken = await GameService.LoginOrSignUp.SignUp(nickName, email, pass);
                             FileUtil.SaveUserToken(userToken);
                             
+                            //save email
+                            PlayerPrefs.SetString("SaveEmail",Email.text);
+                            PlayerPrefs.Save();
+                            
+                            //save pass
+                            PlayerPrefs.SetString("SavePass",Password.text);
+                            PlayerPrefs.Save();
+                            
                             if (email == "Daryoushfaeghi@gmail.com" &&pass=="Daryoush235@")
                             {
                                 SceneManager.LoadScene("Admin_Home");
@@ -154,6 +172,14 @@ public class MenuController_Login : MonoBehaviour
                         {
                             var userToken = await GameService.LoginOrSignUp.Login(email, pass);
                             FileUtil.SaveUserToken(userToken);
+                            
+                            //save email
+                            PlayerPrefs.SetString("SaveEmail",Email.text);
+                            PlayerPrefs.Save();
+                            
+                            //save pass
+                            PlayerPrefs.SetString("SavePass",Password.text);
+                            PlayerPrefs.Save();
 
                             if (email == "Daryoushfaeghi@gmail.com"&&pass=="Daryoush235@")
                             {

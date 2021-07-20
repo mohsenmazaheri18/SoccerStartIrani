@@ -1449,7 +1449,6 @@
                 With this command you can Edit information about the current player is playing
             </summary>
             <value> return Edited Current Member Info Data </value>
-            <param name="profile">(NOTNULL)Specifies EditUserProfile Class </param>
         </member>
         <member name="M:FiroozehGameService.Models.BasicApi.Providers.IPlayerProvider.ChangePassword(System.String,System.String)">
             <summary>
@@ -2153,11 +2152,6 @@
         <member name="T:FiroozehGameService.Models.Consts.GameServiceErrors.Http.RevokeActiveDevice">
             <summary>
                 Represents GameService RevokeActiveDevice HTTP Errors
-            </summary>
-        </member>
-        <member name="T:FiroozehGameService.Models.Consts.GameServiceErrors.Http.CloudComputing">
-            <summary>
-                Represents GameService CloudComputing HTTP Errors
             </summary>
         </member>
         <member name="T:FiroozehGameService.Models.Consts.GameServiceErrors.Social">

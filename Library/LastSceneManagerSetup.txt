@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/SampleScene/Login.unity
+- path: Assets/Scenes/Chat_Blue.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

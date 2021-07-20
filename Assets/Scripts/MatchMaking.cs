@@ -24,25 +24,22 @@ public class MatchMaking : MonoBehaviour
     
     public async void Cansel_AutoMatch()
     {
-        await GameService.GSLive.TurnBased().CancelAutoMatch();
+        await GameService.GSLive.RealTime().CancelAutoMatch();
         StartCoroutine(Wait_To_Back_Home());
     }
 
 
     private void SetEventHandelers()
     {
-	    TurnBasedEventHandlers.AutoMatchUpdated += AutoMatchUpdated;
-	    TurnBasedEventHandlers.JoinedRoom += JoinedRoom;
+	    RealTimeEventHandlers.AutoMatchUpdated += AutoMatchUpdated;
+        RealTimeEventHandlers.JoinedRoom += JoinedRoom;
     }
 
-    private async void JoinedRoom(object sender, JoinEvent joinEvent)
+    private void JoinedRoom(object sender, JoinEvent joinEvent)
     {
         Debug.Log("JoinedRoom : " + joinEvent.JoinData.RoomData.Name);
-        
-        
-            await GameService.GSLive.TurnBased().GetCurrentTurnMember();
 
-            if (joinEvent.JoinData.RoomData.Max==2)
+        if (joinEvent.JoinData.RoomData.Max==2)
         {
             player_role.SetActive(false);
             StartCoroutine(Wait_To_Sprite_Stay());
@@ -74,7 +71,7 @@ public class MatchMaking : MonoBehaviour
     IEnumerator Wait_To_Sprite_Stay()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("Game-c#");
+        SceneManager.LoadScene("Game-c#2");
     }
     
     IEnumerator Wait_To_Back_Home()
@@ -88,8 +85,7 @@ public class MatchMaking : MonoBehaviour
 	    playerMoney.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerMoney");
 	    playerCoin.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerCoin");
 	    SetEventHandelers();
-	    await GameService.GSLive.TurnBased().AutoMatch(new GSLiveOption.AutoMatchOption("Test", 2, 2, false));
-	    await GameService.GSLive.TurnBased().GetCurrentRoomInfo();
+	    await GameService.GSLive.RealTime().AutoMatch(new GSLiveOption.AutoMatchOption("Test", 2, 2, false));
     }
 
 }
