@@ -35,7 +35,7 @@ public class BallManager : MonoBehaviour {
 		distanceToPlayerGate = Vector3.Distance(transform.position, playerGate.transform.position);
 		distanceToOpponentGate = Vector3.Distance(transform.position, opponentGate.transform.position);
 
-		if(canCheck && !GlobalGameManager.goalHappened)
+		if(canCheck)
 			StartCoroutine (checkForShootToGoal());
 
 		//debug
@@ -61,17 +61,17 @@ public class BallManager : MonoBehaviour {
 	/// </summary>
 	IEnumerator checkForShootToGoal() {
 
-		if (distanceToOpponentGate <= threshold && GlobalGameManager.playersTurn) {
+		if (distanceToOpponentGate <= threshold && Game_Manager.TurnedPlayer1.PlayersTurn) {
 			print ("[LEFT] Shoot to goal happened!");
-			GlobalGameManager.playerShootToGate++;
+			Game_Manager.playerShootToGate++;
 			canCheck = false;
 			StartCoroutine (reactiveCheck ());
 			yield break;
 		}
 
-		if (distanceToPlayerGate <= threshold && GlobalGameManager.opponentsTurn) {
+		if (distanceToPlayerGate <= threshold && Game_Manager.TurnedPlayer1.OpponentsTurn) {
 			print ("[RIGHT] Shoot to goal happened!");
-			GlobalGameManager.opponentShootToGate++;
+			Game_Manager.opponentShootToGate++;
 			canCheck = false;
 			StartCoroutine (reactiveCheck ());
 			yield break;
@@ -124,11 +124,6 @@ public class BallManager : MonoBehaviour {
 		float t = 0;
 		while (t < 1) {
 
-			if (GlobalGameManager.goalHappened) {
-				frFlag = false;
-				yield break;
-			}
-
 			//print ("fake rotation...");
 
 			t += Time.deltaTime * 0.4f;
@@ -146,11 +141,11 @@ public class BallManager : MonoBehaviour {
 	void OnTriggerEnter ( Collider other  ){
 		switch(other.gameObject.tag) {
 			case "opponentGoalTrigger":
-				StartCoroutine(gameController.GetComponent<GlobalGameManager>().managePostGoal("Player"));
+				StartCoroutine(gameController.GetComponent<Game_Manager>().ManagePostGoal("Player"));
 				break;
 				
 			case "playerGoalTrigger":
-				StartCoroutine(gameController.GetComponent<GlobalGameManager>().managePostGoal("Opponent"));
+				StartCoroutine(gameController.GetComponent<Game_Manager>().ManagePostGoal("Opponent"));
 				break;
 		}
 	}

@@ -16,8 +16,6 @@ GameObject:
   - component: {fileID: 114506319140391702}
   - component: {fileID: 82693878565956344}
   - component: {fileID: 96159559321335806}
-  - component: {fileID: 7504558614762083140}
-  - component: {fileID: 2833020661989565258}
   m_Layer: 0
   m_Name: 3DBall
   m_TagString: ball
@@ -331,35 +329,3 @@ TrailRenderer:
   m_MinVertexDistance: 0.01
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &7504558614762083140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975457108487340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 916e5b42ac7e043d5bcf3f0276bf5185, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 1
-  ownerId: 
-  isMine: 0
-  isAvailable: 0
-  serializableComponent: {fileID: 2833020661989565258}
---- !u!114 &2833020661989565258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975457108487340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 690f81125c414af0a245da8b2cdc3728, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  synchronizePosition: 1
-  synchronizeRotation: 1
-  synchronizeScale: 0

@@ -20,7 +20,7 @@ public class OpponentUnitController : MonoBehaviour {
 	}
 
 	void Update (){	
-		if(GlobalGameManager.opponentsTurn && canShowSelectionCircle && !GlobalGameManager.goalHappened)
+		if(GlobalGameManager.opponentsTurn && canShowSelectionCircle)
 			selectionCircle.GetComponent<Renderer>().enabled = true;
 		else	
 			selectionCircle.GetComponent<Renderer>().enabled = false;			

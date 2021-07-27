@@ -25,9 +25,9 @@ public class Profile_Details : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
-        var get_data = await GameService.Player.GetCurrentPlayer();
-        nickname.text = get_data.Name;
-        id_name.text = "(UserId: "+get_data.Name+" )";
+        var getData = await GameService.Player.GetCurrentPlayer();
+        nickname.text = getData.Name;
+        id_name.text = "(UserId: "+getData.Name+" )";
 
         back.onClick.AddListener(()=>
         {

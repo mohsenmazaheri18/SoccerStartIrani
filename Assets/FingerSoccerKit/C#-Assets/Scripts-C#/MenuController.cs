@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using FiroozehGameService.Core;
+using FiroozehGameService.Handlers;
+using FiroozehGameService.Models.GSLive;
+using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -28,7 +33,7 @@ public class MenuController : MonoBehaviour {
 
 	[Header("Button GameMode")]
 	 public Button Shop_Button;
-	 public Button Coin , Money , profile;
+	 public Button Coin, Money, profile, chat;
 
 	//*****************************************************************************
 	// Init. Updates the 3d texts with saved values fetched from playerprefs.
@@ -40,14 +45,32 @@ public class MenuController : MonoBehaviour {
 
 		Application.targetFrameRate = 60;
 		
-		playerWins.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerWins");
-		playerMoney.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerMoney");
-		playerCoin.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerCoin");
+		playerWins.text = "" + PlayerPrefs.GetInt("PlayerWins");
+		playerMoney.text = "" + PlayerPrefs.GetInt("PlayerMoney");
+		playerCoin.text = "" + PlayerPrefs.GetInt("PlayerCoin");
+	}
+	
+	private void ChannelMembers(object sender, List<Member> list)
+	{
+		if (list[0].User.IsMe)
+		{
+			SceneManager.LoadScene("Chat_Blue");
+		}
+		else
+		{
+			SceneManager.LoadScene("Chat_Red");
+		}
 	}
 
-
-	void Start()
+	async void Start()
 	{
+
+		//await GameService.GSLive.Chat().GetChannelMembers("Blue");
+		//go to chat
+		chat.onClick.AddListener(async () =>
+		{
+			ChatEventHandlers.ChannelMembers += ChannelMembers;
+		});
 		//player vs AI mode
 		GameMode_Single.onClick.AddListener(() =>
 		{
@@ -56,7 +79,7 @@ public class MenuController : MonoBehaviour {
 			PlayerPrefs.SetInt("GameMode", 0); //set game mode to fetch later in "Game" scene
 			PlayerPrefs.SetInt("IsTournament", 0); //are we playing in a tournament?
 			PlayerPrefs.SetInt("IsPenalty", 0); //are we playing penalty kicks?
-			SceneManager.LoadScene("MatchMaking"); //Load the next scene
+			SceneManager.LoadScene("Game-c# 1"); //Load the next scene
 		});
 		
 		//two player (human) mode
@@ -118,6 +141,8 @@ public class MenuController : MonoBehaviour {
 
 	}
 	
+
+
 	//*****************************************************************************
 	// Play sound clips
 	//*****************************************************************************

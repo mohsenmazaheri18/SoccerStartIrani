@@ -17,16 +17,18 @@ using Utils;
 public class Manage_Avatar : MonoBehaviour
 {
     public RawImage[] avatar;
+    public GameObject mENU;
 
 
 
     // Start is called before the first frame update
     async void Start()
     {
-        var player_avatar = await GameService.Player.GetCurrentPlayer();
-        Debug.Log(player_avatar.Logo);
-        StartCoroutine(RawImage_Utils.DownloadImage(player_avatar.Logo, avatar[0]));
-        StartCoroutine(RawImage_Utils.DownloadImage(player_avatar.Logo, avatar[1]));
+        mENU.SetActive(true);
+        var playerAvatar = await GameService.Player.GetCurrentPlayer();
+        Debug.Log(playerAvatar.Logo);
+        StartCoroutine(RawImage_Utils.DownloadImage(playerAvatar.Logo, avatar[0]));
+        StartCoroutine(RawImage_Utils.DownloadImage(playerAvatar.Logo, avatar[1]));
     }
 
     // Update is called once per frame

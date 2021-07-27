@@ -24,7 +24,6 @@ public class MenuController_Login : MonoBehaviour
     [Header("Login Mode ID Button")]
     public Button Submit;
     public GameObject SwitchToRegisterOrLogin;
-    public Button ClickTo_Join_Chat_Red, ClickTo_Join_Chat_Blue;
 
     [Header("Login Mode ID Input Field")] 
     public InputField NickName;
@@ -47,14 +46,6 @@ public class MenuController_Login : MonoBehaviour
         string SavePass = PlayerPrefs.GetString("SavePass");
         Password.text = SavePass;
         
-        ClickTo_Join_Chat_Red.onClick.AddListener(() =>
-        {
-            SceneManager.LoadScene("Home");
-        });
-        ClickTo_Join_Chat_Blue.onClick.AddListener(() =>
-        {
-            SceneManager.LoadScene("Home");
-        });
         //var user = await GameService.Player.GetCurrentPlayer();
         //Debug.Log(user.Name);
        /* Google.onClick.AddListener(() =>
@@ -150,11 +141,6 @@ public class MenuController_Login : MonoBehaviour
                             //save pass
                             PlayerPrefs.SetString("SavePass",Password.text);
                             PlayerPrefs.Save();
-                            
-                            if (email == "Daryoushfaeghi@gmail.com" &&pass=="Daryoush235@")
-                            {
-                                SceneManager.LoadScene("Admin_Home");
-                            }
 
                             // Disable LoginUI
                             Question_Canvas.enabled = true;
@@ -187,6 +173,7 @@ public class MenuController_Login : MonoBehaviour
                             }
 
                             // Disable LoginUI
+                            //Question_Canvas.enabled = true;
                             SceneManager.LoadScene("Home");
                         }
 

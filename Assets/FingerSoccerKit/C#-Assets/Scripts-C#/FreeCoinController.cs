@@ -28,7 +28,7 @@ public class FreeCoinController : MonoBehaviour {
 		tapFlag = false;
 			
 		//set UI text
-		GetComponent<TextMesh>().text = prizeAmount + " free coin every " + prizeTimeInterval + " hours!";
+		//GetComponent<TextMesh>().text = prizeAmount + " free coin every " + prizeTimeInterval + " hours!";
 		enableFreeCoins();
 
 	}

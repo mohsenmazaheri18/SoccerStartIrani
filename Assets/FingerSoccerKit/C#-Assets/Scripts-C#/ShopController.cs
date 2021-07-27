@@ -21,7 +21,7 @@ public class ShopController : MonoBehaviour {
 	public Text playerCoin;			//Reference to 3d text
 	private int availableCoin;
 
-	public GameObject[] totalItemsForSale;	//Purchase status
+	public Button[] totalItemsForSale;	//Purchase status
 
 
 	private String saveName = "";
@@ -45,7 +45,7 @@ public class ShopController : MonoBehaviour {
 		playerCoin.GetComponent<Text>().text = "" + availableCoin;
 		
 		//check if we previously purchased these items.
-		/*for(int i = 0; i < totalItemsForSale.Length; i++) {
+		for(int i = 0; i < totalItemsForSale.Length; i++) {
 			//format the correct string we use to store purchased items into playerprefs
 			string shopItemName = "shopItem-" + totalItemsForSale[i].GetComponent<ShopItemProperties>().itemIndex.ToString();
 			if(PlayerPrefs.GetInt(shopItemName) == 1) {
@@ -53,9 +53,10 @@ public class ShopController : MonoBehaviour {
 				totalItemsForSale[i].GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1); 	//Make it green
 				totalItemsForSale[i].GetComponent<BoxCollider>().enabled = false;			//Not clickable anymore
 			}
-		}*/
+		}
 	}
 
+	
 	private void Start()
 	{
 		Form1.onClick.AddListener(() =>

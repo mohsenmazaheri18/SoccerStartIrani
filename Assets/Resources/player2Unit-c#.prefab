@@ -16,9 +16,6 @@ GameObject:
   - component: {fileID: 11400002}
   - component: {fileID: 8200000}
   - component: {fileID: 6400000}
-  - component: {fileID: 11498914}
-  - component: {fileID: 4868877838219081212}
-  - component: {fileID: 2105371579399641193}
   m_Layer: 9
   m_Name: player2Unit-c#
   m_TagString: Player_2
@@ -241,52 +238,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &11498914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 485c57b8dd3dbbe41b5eb18f963e66ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGoalkeeper: 0
-  moveSpeed: 1.2
---- !u!114 &4868877838219081212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 916e5b42ac7e043d5bcf3f0276bf5185, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 5
-  ownerId: 
-  isMine: 0
-  isAvailable: 0
-  serializableComponent: {fileID: 2105371579399641193}
---- !u!114 &2105371579399641193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 690f81125c414af0a245da8b2cdc3728, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  synchronizePosition: 1
-  synchronizeRotation: 1
-  synchronizeScale: 1
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0

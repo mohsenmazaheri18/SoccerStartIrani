@@ -71,10 +71,10 @@ public class GlobalGameManager : MonoBehaviour {
 	public static float timeStepToAdvanceRound = 3; 
 
 	//Special occasions
-	public static bool goalHappened;
-	public static bool shootHappened;
-	public static bool gameIsFinished;
-	public static int goalLimit = 10; //To finish the game quickly, without letting the GameTime end.
+	public  bool goalHappened;
+	public  bool shootHappened;
+	public  bool gameIsFinished;
+	public  int goalLimit = 10; //To finish the game quickly, without letting the GameTime end.
 
 	///Game timer vars
 	public static float gameTimer; //in seconds

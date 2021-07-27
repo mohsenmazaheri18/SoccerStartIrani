@@ -88,8 +88,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4363406947625170}
-  - component: {fileID: 8506857392718795282}
-  - component: {fileID: 4646129441182850180}
   m_Layer: 0
   m_Name: AimArrow
   m_TagString: aimArrow
@@ -112,35 +110,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8506857392718795282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1487526790865760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 690f81125c414af0a245da8b2cdc3728, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  synchronizePosition: 1
-  synchronizeRotation: 1
-  synchronizeScale: 1
---- !u!114 &4646129441182850180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1487526790865760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 916e5b42ac7e043d5bcf3f0276bf5185, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 2
-  ownerId: 
-  isMine: 0
-  isAvailable: 0
-  serializableComponent: {fileID: 8506857392718795282}

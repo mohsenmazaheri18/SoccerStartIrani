@@ -5,6 +5,7 @@ using FiroozehGameService.Handlers;
 using FiroozehGameService.Models.GSLive.Command;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utils;
 
@@ -13,14 +14,17 @@ public class MatchMaking : MonoBehaviour
     
     
     //Match Making Game
-    public Text NickName_Player1;
-    public Text NickName_Player2;
-    public GameObject player_role; 
-    public RawImage player1_avatar;
-    public RawImage player2_avatar;
+    [FormerlySerializedAs("NickName_Player1")] public Text nickNamePlayer1;
+    [FormerlySerializedAs("NickName_Player2")] public Text nickNamePlayer2;
+    [FormerlySerializedAs("player_role")] public GameObject playerRole; 
+    [FormerlySerializedAs("player1_avatar")] public RawImage player1Avatar;
+    [FormerlySerializedAs("player2_avatar")] public RawImage player2Avatar;
     
     public Text playerMoney;
     public Text playerCoin;
+
+    [FormerlySerializedAs("Game")] public GameObject game;
+    public GameObject match;
     
     public async void Cansel_AutoMatch()
     {
@@ -31,8 +35,8 @@ public class MatchMaking : MonoBehaviour
 
     private void SetEventHandelers()
     {
-	    RealTimeEventHandlers.AutoMatchUpdated += AutoMatchUpdated;
-        RealTimeEventHandlers.JoinedRoom += JoinedRoom;
+	    CommandEventHandler.AutoMatchUpdated += AutoMatchUpdated;
+        TurnBasedEventHandlers.JoinedRoom += JoinedRoom;
     }
 
     private void JoinedRoom(object sender, JoinEvent joinEvent)
@@ -41,7 +45,7 @@ public class MatchMaking : MonoBehaviour
 
         if (joinEvent.JoinData.RoomData.Max==2)
         {
-            player_role.SetActive(false);
+            playerRole.SetActive(false);
             StartCoroutine(Wait_To_Sprite_Stay());
         }
     }
@@ -51,19 +55,19 @@ public class MatchMaking : MonoBehaviour
         Debug.Log("AutoMatchUpdated : " + matchEvent.Status);
         if (matchEvent.Players[0].User.IsMe)
         {
-            player2_avatar.gameObject.SetActive(true);
-            NickName_Player1.text = matchEvent.Players[0].Name;
-            NickName_Player2.text = matchEvent.Players[1].Name;
-            StartCoroutine(RawImage_Utils.DownloadImage(matchEvent.Players[0].Logo, player1_avatar));
-            StartCoroutine(RawImage_Utils.DownloadImage(matchEvent.Players[1].Logo, player2_avatar));
+            player2Avatar.gameObject.SetActive(true);
+            nickNamePlayer1.text = matchEvent.Players[0].Name;
+            nickNamePlayer2.text = matchEvent.Players[1].Name;
+            StartCoroutine(RawImage_Utils.DownloadImage(matchEvent.Players[0].Logo, player1Avatar));
+            StartCoroutine(RawImage_Utils.DownloadImage(matchEvent.Players[1].Logo, player2Avatar));
         }
         if (matchEvent.Players[1].User.IsMe)
         {
-            player2_avatar.gameObject.SetActive(true);
-            NickName_Player1.text = matchEvent.Players[1].Name;
-            NickName_Player2.text = matchEvent.Players[0].Name;
-            StartCoroutine(RawImage_Utils.DownloadImage(matchEvent.Players[1].Logo, player1_avatar));
-            StartCoroutine(RawImage_Utils.DownloadImage(matchEvent.Players[0].Logo, player2_avatar));
+            player2Avatar.gameObject.SetActive(true);
+            nickNamePlayer1.text = matchEvent.Players[1].Name;
+            nickNamePlayer2.text = matchEvent.Players[0].Name;
+            StartCoroutine(RawImage_Utils.DownloadImage(matchEvent.Players[1].Logo, player1Avatar));
+            StartCoroutine(RawImage_Utils.DownloadImage(matchEvent.Players[0].Logo, player2Avatar));
             
         }
     }
@@ -71,7 +75,9 @@ public class MatchMaking : MonoBehaviour
     IEnumerator Wait_To_Sprite_Stay()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("Game-c#2");
+        //SceneManager.LoadScene("Game-c# 1");
+        match.SetActive(false);
+        game.SetActive(true);
     }
     
     IEnumerator Wait_To_Back_Home()
@@ -85,7 +91,7 @@ public class MatchMaking : MonoBehaviour
 	    playerMoney.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerMoney");
 	    playerCoin.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("PlayerCoin");
 	    SetEventHandelers();
-	    await GameService.GSLive.RealTime().AutoMatch(new GSLiveOption.AutoMatchOption("Test", 2, 2, false));
+        await GameService.GSLive.TurnBased().AutoMatch(new GSLiveOption.AutoMatchOption("Test", 2, 2));
     }
 
 }

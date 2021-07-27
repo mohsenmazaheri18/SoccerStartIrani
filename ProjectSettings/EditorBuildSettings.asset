@@ -6,9 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MenuScene.unity
-    guid: 9fa6fcbf7c4bc4ee8a97ac516062554f
+    path: Assets/SampleScene/Game/Login.unity
+    guid: 5b2cf53f5f822644abbb8a11a728aaae
   - enabled: 1
-    path: Assets/Scenes/ChatScene.unity
-    guid: a66f0af7b27054fe881eca5cc1d88cad
+    path: Assets/SampleScene/Game/Home.unity
+    guid: 7bb1f0a2a8a7ca745a881644ad7b1beb
+  - enabled: 1
+    path: Assets/SampleScene/Game/MatchMaking.unity
+    guid: a6f4f809263fcd54e9f39edd251a31c7
+  - enabled: 1
+    path: Assets/SampleScene/Game/Game-c# 1.unity
+    guid: aabae63fbc3dd1d4bb077f100b41330a
+  - enabled: 1
+    path: Assets/SampleScene/Chat/Chat_Red.unity
+    guid: 95e48a0423197e74ebe536a97c003e5a
+  - enabled: 1
+    path: Assets/SampleScene/Chat/Chat_Blue.unity
+    guid: fdc46d7afb7985d44a4ac66411938c92
   m_configObjects: {}

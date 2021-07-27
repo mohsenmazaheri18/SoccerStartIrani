@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GoalKeeperController : MonoBehaviour {
+public class GoalKeeperController : MonoBehaviour
+{
 
 	/// <summary>
 	/// This class gives the goalkeepers a simple AI which moves them inside the gate 
 	/// to avoid the shooter to have an easy direct shot. You can edit the moveSpeed to come up with a 
 	/// smarter/dumber goalkeeper.
 	/// </summary>
-
+/*
 	public bool isGoalkeeper = false;
 	[Range(0.7f, 2.0f)]
 	public float moveSpeed = 1.2f;		//increasing this parameter will result in a better reflex of goalkeeper
@@ -30,8 +31,8 @@ public class GoalKeeperController : MonoBehaviour {
     }
 
     IEnumerator Start () {
-		//This class only works in Penalty Mode
-		if(!GlobalGameManager.isPenaltyKick)
+		//This class only works in Penalty Mod
+		if(!Game_Manager.isPenaltyKick)
 			this.enabled = false;
 
         if (penaltyHelperArrow)
@@ -46,14 +47,14 @@ public class GoalKeeperController : MonoBehaviour {
 		checkIsGoalKeeper();
 
         //Use this for the old automatic goalkeeper
-		//if(isGoalkeeper && canMove && !GlobalGameManager.goalHappened && !GlobalGameManager.gameIsFinished)
+		//if(isGoalkeeper && canMove && !Game_Manager.goalHappened && !Game_Manager.gameIsFinished)
         //{
         //   StartCoroutine(moveGoalkeeper());
         //}
 			
 
         //Use this for new V1.8.2 manual goalkeeper
-        if (isGoalkeeper && canMove && !GlobalGameManager.goalHappened && !GlobalGameManager.gameIsFinished)
+        if (isGoalkeeper && canMove && !Game_Manager.goalHappened && !Game_Manager.gameIsFinished)
         {
             //automatic goalkeeper - for AI & P2
             if (this.gameObject.tag == "Opponent" || this.gameObject.tag == "Player_2")
@@ -174,15 +175,13 @@ public class GoalKeeperController : MonoBehaviour {
     }
 
 
-    //***************************************************************************//
-    // Move the blender
-    //***************************************************************************//
+
     private Vector3 _Pos;
     IEnumerator dragGK()
     {
 
         //let the player move the gk until the turn is over
-        while (/*!GlobalGameManager.shootHappened*/ isGoalkeeper)
+        while (!Game_Manager.shootHappened isGoalkeeper)
         {
 
             //follow mouse or touch
@@ -192,7 +191,7 @@ public class GoalKeeperController : MonoBehaviour {
             print("Drag Player pos: " + _Pos);
 
             //Limit X-Y movements
-            // X is set from GlobalGameManager.penaltyKickGKPosition
+            // X is set from Game_Manager.penaltyKickGKPosition
             // Y should be in this range : -4 ~ +2.5 (new setting: -7 ~ +6)
             float newPosY = _Pos.y;
 
@@ -202,7 +201,7 @@ public class GoalKeeperController : MonoBehaviour {
             if (_Pos.y > 6.0f)
                 newPosY = 6.0f;
 
-            _Pos = new Vector3(GlobalGameManager.penaltyKickGKPosition.x, newPosY, -0.5f);
+            _Pos = new Vector3(Game_Manager.penaltyKickGKPosition.x, newPosY, -0.5f);
 
             //follow player's finger
             transform.position = _Pos + new Vector3(0, 0, 0);
@@ -223,9 +222,7 @@ public class GoalKeeperController : MonoBehaviour {
 
     void resetGkPosition()
     {
-        transform.position = GlobalGameManager.penaltyKickGKPosition;
-    }
-
+        transform.position = Game_Manager.penaltyKickGKPosition;
+    }*/
 
 }
- 
