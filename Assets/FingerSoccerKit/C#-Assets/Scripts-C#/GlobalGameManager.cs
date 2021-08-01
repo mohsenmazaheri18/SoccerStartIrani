@@ -513,24 +513,25 @@ public class GlobalGameManager : MonoBehaviour {
 		
 		//*** reformation of units ***//
 		//Reformation for player_1
-		if(!isPenaltyKick)
-			StartCoroutine(playerAIController.GetComponent<PlayerAI>().changeFormation(PlayerAI.playerTeam, PlayerPrefs.GetInt("PlayerFormation"), 0.6f, 1));
-		else
-			StartCoroutine(playerAIController.GetComponent<PlayerAI>().goToPosition(PlayerAI.playerTeam, playerDestination, 1));
-		
-		//if this is player-1 vs player-2 match:
-		if(GlobalGameManager.gameMode == 1) {
-			StartCoroutine(playerAIController.GetComponent<PlayerAI>().changeFormation(PlayerAI.player2Team, PlayerPrefs.GetInt("Player2Formation"), 0.6f, -1));
-		} else {	//if this is player-1 vs AI match:
+//		if(!isPenaltyKick)
+//			StartCoroutine(playerAIController.GetComponent<PlayerAI>().changeFormation(PlayerAI.playerTeam, PlayerPrefs.GetInt("PlayerFormation"), 0.6f, 1));
+//		else
+//			StartCoroutine(playerAIController.GetComponent<PlayerAI>().goToPosition(PlayerAI.playerTeam, playerDestination, 1));
 
-			if(!isPenaltyKick) {
-				//get a new random formation everytime
-				StartCoroutine(opponentAIController.GetComponent<OpponentAI>().changeFormation(Random.Range(0, FormationManager.formations), 0.6f));
-			} else {
-				//go to correct penalty position
-				StartCoroutine(opponentAIController.GetComponent<OpponentAI>().goToPosition(OpponentAI.myTeam, AIDestination, 1));
-			}
+
+		if (!isPenaltyKick)
+		{
+			//get a new random formation everytime
+			StartCoroutine(opponentAIController.GetComponent<OpponentAI>()
+				.changeFormation(Random.Range(0, FormationManager.formations), 0.6f));
 		}
+		else
+		{
+			//go to correct penalty position
+			StartCoroutine(opponentAIController.GetComponent<OpponentAI>()
+				.goToPosition(OpponentAI.myTeam, AIDestination, 1));
+		}
+
 
 		//bring the ball back to it's initial position
 		ball.GetComponent<TrailRenderer>().enabled = false;

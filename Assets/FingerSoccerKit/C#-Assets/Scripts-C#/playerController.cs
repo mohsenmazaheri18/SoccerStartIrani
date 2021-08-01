@@ -73,11 +73,7 @@ public class playerController : MonoBehaviour
 		shootCircle.GetComponent<Renderer>().enabled = false; //hide shoot Circle
 		aimArrowBody.GetComponent<Renderer>().enabled = false; //hide aim arrow
 	}
-
-	void Start()
-	{
-
-	}
+	
 
 	void Update()
 	{
@@ -129,7 +125,7 @@ public class playerController : MonoBehaviour
 				position1.y,
 				-0.5f);
 			helperEnd.transform.position = position1;
-
+			
 			//debug line from initial position to our current touch position
 			Debug.DrawLine(position, position2, Color.red);
 			//debug line from initial position to maximum power position (mirrored)
@@ -353,7 +349,7 @@ public class playerController : MonoBehaviour
 		}
 		else if (Game_Manager.TurnedPlayer1.OpponentsTurn && gameObject.CompareTag("Player_2"))
 		{
-			outPower *= (1 + (TeamsManager.getTeamSettings(PlayerPrefs.GetInt("Player2Flag")).x / 35.0f));
+			outPower *= (1 + (TeamsManager.getTeamSettings(PlayerPrefs.GetInt("Play0er2Flag")).x / 35.0f));
 			//print ("[P2] Team Power: " + TeamsManager.getTeamSettings(PlayerPrefs.GetInt("Player2Flag")).x);
 			//print ("[P2] NEW outPower: " + outPower.magnitude);
 		}
@@ -373,16 +369,16 @@ public class playerController : MonoBehaviour
 		//for player1 vs player2 mode
 		if (outPower.magnitude > 24)
 		{
-			if (gameObject.tag == "Player")
+			if (gameObject.CompareTag("Player"))
 				Game_Manager.playerShoots++;
-			else if (gameObject.tag == "Player_2")
+			else if (gameObject.CompareTag("Player_2"))
 				Game_Manager.opponentShoots++;
 		}
 		else
 		{
-			if (gameObject.tag == "Player")
+			if (gameObject.CompareTag("Player"))
 				Game_Manager.playerPasses++;
-			else if (gameObject.tag == "Player_2")
+			else if (gameObject.CompareTag("Player_2"))
 				Game_Manager.opponentPasses++;
 		}
 

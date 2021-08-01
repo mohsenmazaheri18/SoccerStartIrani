@@ -12,17 +12,12 @@ public class PlayerAI : MonoBehaviour {
 	/// and will be used to setup new formations for these units at the start of the game or when a goal happens.
 	///*************************************************************************///
 
-	public Texture2D[] availableFlags;			//array of all available teams
+    public Texture2D[] availableFlags;			//array of all available teams
 
 	public static GameObject[] playerTeam;		//array of all player-1 units
 	public static int playerFormation;			//player-1 formation
 	public static int playerFlag;				//player-1 team flag
-
-	//for two player game
-	public static GameObject[] player2Team;		//array of all player-2 units
-	public static int player2Formation;			//player-2 formation
-	public static int player2Flag;				//player-2 team flag
-
+	
 	//flags
 	internal bool canChangeFormation;
 
@@ -57,33 +52,6 @@ public class PlayerAI : MonoBehaviour {
 			unit.GetComponent<Renderer>().material.mainTexture = availableFlags[playerFlag];
 			i++;
 		}
-		
-		//if this is a 2-player local game
-		if(GlobalGameManager.gameMode == 1) {
-
-			//fetch player_2's formation
-			if(PlayerPrefs.HasKey("Player2Formation"))
-				player2Formation = PlayerPrefs.GetInt("Player2Formation");
-			else	
-				player2Formation = 0; //Default Formation
-			
-			//fetch player_2's flag
-			if(PlayerPrefs.HasKey("Player2Flag"))
-				player2Flag = PlayerPrefs.GetInt("Player2Flag");
-			else	
-				player2Flag = 1; //Default team
-
-			//cache all player_2 units
-			player2Team = GameObject.FindGameObjectsWithTag("Player_2");
-			int j = 1;
-			foreach(GameObject unit in player2Team) {
-				//Optional
-				unit.name = "Player2Unit-" + j;
-				unit.GetComponent<playerController>().unitIndex = j;
-				unit.GetComponent<Renderer>().material.mainTexture = availableFlags[player2Flag];
-				j++;		
-			}
-		}
 	}
 
 
@@ -91,21 +59,9 @@ public class PlayerAI : MonoBehaviour {
 
 		//run the starting commands
 		init ();
+		
+		StartCoroutine(changeFormation(playerTeam, playerFormation, 1, 1));
 
-		if(!GlobalGameManager.isPenaltyKick)
-			StartCoroutine(changeFormation(playerTeam, playerFormation, 1, 1));
-		else
-			StartCoroutine(goToPosition(playerTeam, GlobalGameManager.playerDestination, 1));
-
-		//For two-player mode,
-		if(GlobalGameManager.gameMode == 1) {
-
-			if(!GlobalGameManager.isPenaltyKick)
-				StartCoroutine(changeFormation(player2Team, player2Formation, 1, -1));
-			else
-				StartCoroutine(goToPosition(player2Team, GlobalGameManager.AIDestination, 1));
-		}
-			
 		canChangeFormation = false;
 	}
 

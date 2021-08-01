@@ -49,27 +49,20 @@ public class MenuController : MonoBehaviour {
 		playerMoney.text = "" + PlayerPrefs.GetInt("PlayerMoney");
 		playerCoin.text = "" + PlayerPrefs.GetInt("PlayerCoin");
 	}
-	
-	private void ChannelMembers(object sender, List<Member> list)
-	{
-		if (list[0].User.IsMe)
-		{
-			SceneManager.LoadScene("Chat_Blue");
-		}
-		else
-		{
-			SceneManager.LoadScene("Chat_Red");
-		}
-	}
 
-	async void Start()
+	private void ChannelsSubscribed(object sender, List<string> list)
+	{
+		
+	}
+	void Start()
 	{
 
 		//await GameService.GSLive.Chat().GetChannelMembers("Blue");
 		//go to chat
-		chat.onClick.AddListener(async () =>
+		chat.onClick.AddListener(() =>
 		{
-			ChatEventHandlers.ChannelMembers += ChannelMembers;
+			 GameService.GSLive.Chat().GetChannelsSubscribed();
+			 ChatEventHandlers.ChannelsSubscribed+=ChannelsSubscribed;
 		});
 		//player vs AI mode
 		GameMode_Single.onClick.AddListener(() =>
@@ -141,7 +134,6 @@ public class MenuController : MonoBehaviour {
 
 	}
 	
-
 
 	//*****************************************************************************
 	// Play sound clips

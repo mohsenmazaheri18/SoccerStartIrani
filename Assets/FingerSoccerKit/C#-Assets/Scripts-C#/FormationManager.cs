@@ -91,11 +91,8 @@ public class FormationManager : MonoBehaviour {
 				if(_UnitIndex == 4) output = new Vector3(-2, -7 + yFixer, fixedZ);
 				break;
 			case 7:
-				if(_UnitIndex == 0) output = new Vector3(-6, 7f + yFixer, fixedZ);
-				if(_UnitIndex == 1) output = new Vector3(-10, 3.5f + yFixer, fixedZ);
-				if(_UnitIndex == 2) output = new Vector3(-6, 0 + yFixer, fixedZ);
-				if(_UnitIndex == 3) output = new Vector3(-10, -3.5f + yFixer, fixedZ);
-				if(_UnitIndex == 4) output = new Vector3(-6, -6.5f + yFixer, fixedZ);
+		
+				;
 				break;
 			case 8:
 				if(_UnitIndex == 0) output = new Vector3(-3, 3 + yFixer, fixedZ);

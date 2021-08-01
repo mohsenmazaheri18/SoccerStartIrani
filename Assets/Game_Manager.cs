@@ -15,24 +15,44 @@ public class Game_Manager : MonoBehaviour
 	{
 		//Turns in flags
 
-
+		public Texture2D[] AvailableFlags; //array of all available teams
 		public static bool PlayersTurn;
 		public static bool OpponentsTurn;
-		
-		public TurnedPlayer1(bool playersTurn, bool opponentsTurn)
-		{
+		public GameObject[] PlayerTeam;
+		public static int PlayerFormation;			//player-1 formation
+		public static int PlayerFlag;				//player-1 team flag
 
+		public TurnedPlayer1(bool playersTurn, bool opponentsTurn, Texture2D[] availableFlags)
+		{
+			this.AvailableFlags = availableFlags;
+			
 			if (PlayersTurn)
 			{
 				PlayersTurn = playersTurn;
 				PlayersTurn = true;
 				playerController.canShoot = true;
 				OpponentsTurn = opponentsTurn;
-				OpponentsTurn = false;
-				OpponentAI.opponentCanShoot = false;
-				GameService.GSLive.TurnBased().ChooseNext();
-				TurnBasedEventHandlers.ChoosedNext+=ChoosedNext;
+				PlayerFlag = PlayerPrefs.GetInt("PlayerFlag");
+				PlayerFormation = PlayerPrefs.GetInt("PlayerFormation");
+				PlayerTeam = GameObject.FindGameObjectsWithTag("Player");
+				changeFormation(PlayerTeam, PlayerFormation, 1, 1);
+				goToPosition(new GameObject[playerShoots], new Vector3(0, 0, 0), 1);
+				;
+				int i = 1;
+				foreach (GameObject unit in PlayerTeam)
+				{
+					//Optional
+					unit.name = "PlayerUnit-" + i;
+					unit.GetComponent<playerController>().unitIndex = i;
+					unit.GetComponent<Renderer>().material.mainTexture = availableFlags[PlayerFlag];
+					i++;
+				}
 
+				if (playerController.canShoot)
+				{
+					GameService.GSLive.TurnBased().ChooseNext();
+					TurnBasedEventHandlers.ChoosedNext += ChoosedNext;
+				}
 			}
 			else
 
@@ -43,30 +63,118 @@ public class Game_Manager : MonoBehaviour
 				OpponentsTurn = opponentsTurn;
 				OpponentsTurn = true;
 				OpponentAI.opponentCanShoot = true;
-				GameService.GSLive.TurnBased().ChooseNext();
-				TurnBasedEventHandlers.ChoosedNext+=ChoosedNext;
-
+				PlayerFlag = PlayerPrefs.GetInt("PlayerFlag");
+				PlayerFormation = PlayerPrefs.GetInt("PlayerFormation");
+				PlayerTeam = GameObject.FindGameObjectsWithTag("Player");
+				changeFormation(PlayerTeam, PlayerFormation, 1, 1);
+				;
+				int i = 1;
+				foreach (GameObject unit in PlayerTeam)
+				{
+					//Optional
+					unit.name = "PlayerUnit-" + i;
+					unit.GetComponent<playerController>().unitIndex = i;
+					unit.GetComponent<Renderer>().material.mainTexture = availableFlags[PlayerFlag];
+					i++;
+				}
+				if (playerController.canShoot)
+				{
+					GameService.GSLive.TurnBased().ChooseNext();
+					TurnBasedEventHandlers.ChoosedNext += ChoosedNext;
+				}
 			}
 		}
+
 		private void ChoosedNext(object sender, Member member)
 		{
 			if (member.User.IsMe)
 			{
-				PlayersTurn = true;
+				PlayersTurn = false;
 				playerController.canShoot = true;
-				OpponentsTurn = false;
+				OpponentsTurn = true;
 				OpponentAI.opponentCanShoot = false;
+				playerShoots = 1;
+				if (playerShoots==1)
+				{
+					PlayersTurn = true;
+					playerController.canShoot = false;
+					OpponentsTurn = false;
+					OpponentAI.opponentCanShoot = true;
+					playerShoots = 0;
+				}
 			}
 			else
 			{
-				PlayersTurn = false;
+				PlayersTurn = true;
 				playerController.canShoot = false;
 				OpponentsTurn = true;
-				OpponentAI.opponentCanShoot = true;
+				OpponentAI.opponentCanShoot = false;
+				playerShoots = 1;
+				if (playerShoots==1)
+				{
+					PlayersTurn = false;
+					playerController.canShoot = true;
+					OpponentsTurn = false;
+					OpponentAI.opponentCanShoot = true;
+					playerShoots = 0;
+				}
+			}
+		}
+		public IEnumerator changeFormation ( GameObject[] _team ,   int _formationIndex ,   float _speed ,   int _dir  ){
+
+			//cache the initial position of all units
+			List<Vector3> unitsSartingPosition = new List<Vector3>();
+			foreach(GameObject unit in _team) {
+				unitsSartingPosition.Add(unit.transform.position); //get the initial postion of this unit for later use.
+				unit.GetComponent<MeshCollider>().enabled = false;	//no collision for this unit till we are done with re positioning.
+			}
+		
+			float t = 0;
+			while(t < 1) {
+				t += Time.deltaTime * _speed;
+				for(int cnt = 0; cnt < _team.Length; cnt++) {
+					_team[cnt].transform.position = new Vector3(	 Mathf.SmoothStep(	unitsSartingPosition[cnt].x, 
+							FormationManager.getPositionInFormation(_formationIndex, cnt).x * _dir,
+							t),
+						Mathf.SmoothStep(	unitsSartingPosition[cnt].y, 
+							FormationManager.getPositionInFormation(_formationIndex, cnt).y,
+							t),
+						FormationManager.fixedZ );
+				}		
+				yield return 0;
+			}
+		
+			if(t >= 1) {
+				foreach(GameObject unit in _team)
+					unit.GetComponent<MeshCollider>().enabled = true; //collision is now enabled.
+			}
+		}
+		public IEnumerator goToPosition ( GameObject[] unit, Vector3 pos,   float _speed  ){
+
+			//first we need to completely freeze the unit
+			unit[0].GetComponent<Rigidbody>().velocity = Vector3.zero;
+			unit[0].GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+			print (unit[0].name + " position is fixed.");
+
+			Vector3 unitsSartingPosition = unit[0].transform.position;
+			unit[0].GetComponent<MeshCollider>().enabled = false;	//no collision for this unit till we are done with re positioning.
+
+			float t = 0;
+			while(t < 1) {
+				t += Time.deltaTime * _speed;
+				unit[0].transform.position = new Vector3( Mathf.SmoothStep(unitsSartingPosition.x, pos.x, t),
+					Mathf.SmoothStep(unitsSartingPosition.y, pos.y, t),
+					unitsSartingPosition.z );
+				
+				yield return 0;
+			}
+
+			if(t >= 1) {
+				unit[0].GetComponent<MeshCollider>().enabled = true;
 			}
 		}
 	}
-
+	
 
 	// fill time bar 
 
@@ -291,12 +399,7 @@ public class Game_Manager : MonoBehaviour
 
 		Destroy(gp, 1.5f);
 
-		StartCoroutine(_playerAIController.GetComponent<PlayerAI>()
-			.changeFormation(PlayerAI.playerTeam, PlayerPrefs.GetInt("PlayerFormation"), 0.6f, 1));
-
-
-		StartCoroutine(_playerAIController.GetComponent<PlayerAI>().changeFormation(PlayerAI.player2Team,
-			PlayerPrefs.GetInt("Player2Formation"), 0.6f, -1));
+		PlayerPrefs.GetInt("PlayerFormation");
 
 		//bring the ball back to it's initial position
 		_ball.GetComponent<TrailRenderer>().enabled = false;
@@ -486,8 +589,7 @@ public class Game_Manager : MonoBehaviour
 		p2TimeBar.transform.localScale = scale;
 
 		_playerAIController = GameObject.FindGameObjectWithTag("playerAI");
-		_opponentAIController = GameObject.FindGameObjectWithTag("opponentAI");
-
+		
 		_ball = GameObject.FindGameObjectWithTag("ball");
 		_ballStartingPosition = new Vector3(0, -0.81f, -0.7f); //for normal play mode
 	}

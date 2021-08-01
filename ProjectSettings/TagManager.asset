@@ -23,6 +23,7 @@ TagManager:
   - aimPivot
   - aimArrowBody
   - PenaltyHelperArrow
+  - playerAI_
   layers:
   - Default
   - TransparentFX
