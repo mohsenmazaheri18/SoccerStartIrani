@@ -178,6 +178,7 @@ public class Game_Manager : MonoBehaviour
 
 	// fill time bar 
 
+	public Texture2D[] AvailableFlags; //array of all available teams
 	//available time to think and shoot
 	private float _p1ShootTime; //additional time (based on the selected team) for p1
 	private float _p2ShootTime; //additional time (based on the selected team) for p2 or AI
@@ -240,7 +241,11 @@ public class Game_Manager : MonoBehaviour
 	// Start is called before the first frame update
 	async void Start()
 	{
-		await GameService.GSLive.TurnBased().TakeTurn(typeof(TurnedPlayer1).ToString());
+		TurnedPlayer1 myObject = new TurnedPlayer1(true, false, AvailableFlags);
+		var json = JsonUtility.ToJson(myObject);
+		myObject = JsonUtility.FromJson<TurnedPlayer1>(json);
+		
+		await GameService.GSLive.TurnBased().TakeTurn(json);
 		TurnBasedEventHandlers.TakeTurn += TakeTurn;
 
 		await GameService.GSLive.TurnBased().GetRoomMembersDetail();
